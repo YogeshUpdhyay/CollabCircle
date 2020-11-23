@@ -1,4 +1,4 @@
-from api.service.models import *
+from api.users.models import *
 
 class Validation:
 
@@ -11,7 +11,7 @@ class Validation:
     def validate_username(self, username):
         pass
 
-    def validate_password(self, username):
+    def validate_password(self, password):
         pass
 
 validator = Validation()

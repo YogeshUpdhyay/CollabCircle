@@ -5,9 +5,9 @@ from passlib.context import CryptContext
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 class Users(Document):
-    Username = StringField()
+    Username = StringField(unique=True)
     Full_name = StringField()
-    Email = EmailField()
+    Email = EmailField(unique=True)
     Password = StringField()
 
     def verify_password(self, plain_password):
@@ -17,5 +17,5 @@ class Users(Document):
         self.Password = pwd_context.hash(password)
 
 class ActiveSessions(Document):
-    User_id: str
-    Refresh_token: str
+    User_id = StringField()
+    Refresh_token = StringField()
