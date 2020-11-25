@@ -11,6 +11,7 @@ from api.users.serializers import *
 from api.users.helpers.logs import console_logger
 from api.users.helpers.validation import validator
 from api.users.helpers.authentication import authenticator
+from api.users.helpers.mail import mail
 import config
 
 router = APIRouter()
@@ -42,7 +43,7 @@ async def login(payload: Login_in):
     refresh_token = authenticator.create_refresh_token(user.Username)
 
     # Adding to the sessions collection
-    session = ActiveSessions(User_id = str(user.id), Refresh_token = refresh_token)
+    session = ActiveSessions(Username = user.Username, Refresh_token = refresh_token)
     session.save()
     
     content = {
@@ -60,9 +61,8 @@ async def refresh(refresh_token: str = Header(...)):
     """
     # If refresh tokens in active sessions and signature verified
     if authenticator.verify_refresh_token(refresh_token) and ActiveSessions.objects(Refresh_token__contains = refresh_token):
-        user_id = ActiveSessions.objects.get(Refresh_token = refresh_token).User_id
-        user = Users.objects.get(id = user_id)
-        access_token = authenticator.create_access_token(user.Username)
+        username = ActiveSessions.objects.get(Refresh_token = refresh_token).Username
+        access_token = authenticator.create_access_token(username)
 
         content = {
             "access_token" : access_token
@@ -116,10 +116,61 @@ async def request_reset(payload: Reset_in):
         except:
             raise HTTPException(status_code=404, detail="User not found")
     
-    # Creating a reset token
-    reset_token = authenticator.create_password_reset_token(user.Username)
+    # Sending reset otp mail
+    if mail.send_reset_password_email(user):
+        response = {
+            "reset_token" : authenticator.create_reset_token(user.Username)
+        }
+        return response
+    else:
+        raise HTTPException(status_code=500, detail="Server Error")
 
-    pass
+@router.post("/validate/otp")
+async def validate_otp(payload: ValidOtp_in):
+    """
+        Validate OTP 
+    """
+    # Verifying the reset token
+    username = authenticator.verify_reset_token(payload.Reset_token)
+
+    if username != None:
+        record = ResetRecord.objects.get(Username = username)
+        if record.Otp == payload.Otp:
+            reset_token = authenticator.create_reset_token(username)
+            response = {
+                "reset_token" : authenticator.create_reset_token(username)
+            }
+            return response
+        else:
+            raise HTTPException(status_code=400, detail="Invalid OTP")
+    else:
+        raise HTTPException(status_code=400, detail="Invalid token")
+
+
+@router.post("/change/password")
+async def change_password(payload: ChangePassword_in):
+    """
+        Changes password
+    """
+
+    # Verifying reset token
+    username = authenticator.verify_reset_token(payload.Reset_token)
+
+    if username != None:
+        user = Users.objects.get(Username = username)
+        user.save_password_hash(payload.Password)
+        user.save()
+        return "Success"
+    else:
+        raise HTTPException(status_code=400, detail="Invalid token")
+
+        
+
+
+    
+    
+    
+
 
 
     

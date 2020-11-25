@@ -15,3 +15,11 @@ class Register_in(BaseModel):
 
 class Reset_in(BaseModel):
     Username_Email: str
+
+class ValidOtp_in(BaseModel):
+    Otp: int
+    Reset_token: str
+
+class ChangePassword_in(BaseModel):
+    Password: str
+    Reset_token: str

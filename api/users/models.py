@@ -17,5 +17,13 @@ class Users(Document):
         self.Password = pwd_context.hash(password)
 
 class ActiveSessions(Document):
-    User_id = StringField()
+    Username = StringField()
     Refresh_token = StringField()
+
+class ResetRecord(Document):
+    Username = StringField()
+    Otp = IntField()
+
+    meta = {
+        "expireAfterSeconds" : 60
+    }
