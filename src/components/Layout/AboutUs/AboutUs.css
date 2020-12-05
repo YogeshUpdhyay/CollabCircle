@@ -1,0 +1,46 @@
+.Connect__img{
+
+  height: 300px;
+  width : 400px ;
+  align-content: flex-end;
+
+}
+
+.Body{
+  background-color: white ;
+}
+
+.Info{
+  color : #635555 ;
+  padding-top: 20vh;
+  padding-left: 20px ;
+  padding-right: 50px ;
+  padding-bottom: 45px;
+  width : 700px ;
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  /* background-image: linear-gradient(to right, #61329F , #AB92CC) */
+}
+
+.Info__right{
+  color : #635555 ;
+  padding-top: 20vh;
+  padding-left: 20px ;
+  padding-right: 50px ;
+  padding-bottom: 45px;
+  width : 700px ;
+  text-align: right;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.Info-heading{
+  color :#62339F ;
+  padding-top: 20vh;
+  padding-left: 20px ;
+  padding-right: 50px ;
+  padding-bottom: 45px;
+  width : 700px ;
+  text-align: right;
+  font-family: 'Montserrat', sans-serif;
+
+}

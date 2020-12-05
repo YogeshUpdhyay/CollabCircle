@@ -1,0 +1,29 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.Container{
+  width: fit-content;
+  background-color: white;
+  height : 70vh ;
+  width : 100% ;
+  font-family: 'Josefin Sans', sans-serif;
+  padding: 1 vh;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.heading{
+  font-size: 8vh;
+}
+
+.info{
+  justify-content: space-between;
+  align-items: center;
+  font-size: 3vh;
+  
+}

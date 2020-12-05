@@ -1,0 +1,79 @@
+
+.banner{
+  height : 100vh ;
+  position: relative ;
+  /* background-image: url("../../assets/bg_1.jpg"); */
+  background-image: url("../../../assets/bg_1.jpg");
+  box-sizing: content-box;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.banner__AboutUs{
+  height : 100vh ;
+  position: relative ;
+  /* background-image: url("../../assets/Aboutus.jpg"); */
+  background-image: url("../../../assets/Aboutus.jpg");
+  box-sizing: content-box;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.banner__info{
+
+  
+  color: rgb(99, 85, 85) ;
+  /* background-color: white; */
+  padding-top: 20vh;
+  padding-left: 20px ;
+  padding-right: 50px ;
+  padding-bottom: 45px;
+  width : 700px ;
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  
+   
+}
+
+.banner__info__AboutUs{
+  color:#12327F;
+  /* background-color: white; */
+  padding-top: 20vh;
+  padding-left: 20px ;
+  padding-right: 50px ;
+  padding-bottom: 45px;
+  width : 700px ;
+  text-align: left;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.banner__text{
+   
+  font-size: 50px;
+  align-items: center;
+}
+
+.banner__info > button{
+  background-color: bisque;
+  color: black;
+  text-transform: inherit;
+  margin-top: 20px;
+  font-weight: 600 ;
+
+}
+ 
+.banner__info > button :hover{
+  background-color: white;
+  color: #ff385c;
+  text-transform: inherit;
+  margin-top: 20px;
+  font-weight: 600 ;
+
+}
+
+ .banner__info > button:hover {
+  background-color: white;
+  color: #ff7779;
+} 
