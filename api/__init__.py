@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import mongoengine
 
 def dbinit():
-    mongoengine.connect(db="CollabDB", host='mongo', username='root', password='example', authentication_source='admin')
+    mongoengine.connect(db="CollabDB", host='localhost', username='root', password='example', authentication_source='admin')
 
 def create_app():
     app = FastAPI(

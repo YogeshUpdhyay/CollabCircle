@@ -1,15 +1,15 @@
 version: "3"
 
 services: 
-  web:
-    build: .
-    command: python run.py 
-    ports: 
-      - 8087:8000
-    volumes:
-      - .:/code
-    environment: 
-      - SECRET_KEY=d154d32b91dab6f97a4c8b6eda261912473eb8f8ef3e33c2e3a5e0f9f8c8d3c6
+  # web:
+  #   build: .
+  #   command: python run.py 
+  #   ports: 
+  #     - 8087:8000
+  #   volumes:
+  #     - .:/code
+  #   environment: 
+  #     - SECRET_KEY=d154d32b91dab6f97a4c8b6eda261912473eb8f8ef3e33c2e3a5e0f9f8c8d3c6
 
   mongo:
     image: mongo:4
@@ -18,6 +18,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
       - ./data:/data/db
+    ports: 
+      - 27017:27017
   
   mongo-express:
     image: mongo-express
