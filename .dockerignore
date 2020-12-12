@@ -2,4 +2,7 @@ data
 docker-compose.yml
 Dockerfile
 .pytest_cache
+.gitignore
+README.md
+fastapi
 

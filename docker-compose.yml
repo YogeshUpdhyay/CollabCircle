@@ -8,8 +8,6 @@ services:
   #     - 8087:8000
   #   volumes:
   #     - .:/code
-  #   environment: 
-  #     - SECRET_KEY=d154d32b91dab6f97a4c8b6eda261912473eb8f8ef3e33c2e3a5e0f9f8c8d3c6
 
   mongo:
     image: mongo:4

@@ -6,7 +6,7 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 class Users(Document):
     Username = StringField(unique=True)
-    Full_name = StringField()
+    Fullname = StringField()
     Email = EmailField(unique=True)
     Password = StringField()
 
@@ -19,3 +19,5 @@ class Users(Document):
 class ActiveSessions(Document):
     User_id = StringField()
     Refresh_token = StringField()
+
+    

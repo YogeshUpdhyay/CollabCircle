@@ -1,25 +1,24 @@
 from typing import List, Optional
-from fastapi import FastAPI
-from pydantic import *
+from fastapi import Header
+from pydantic import BaseModel, EmailStr
 import os
 
-class Login_in(BaseModel):
+class LoginPostIn(BaseModel):
     Username_Email: str
     Password: str
 
-class Register_in(BaseModel):
+class RegisterPostIn(BaseModel):
     Username: str
     Password: str
     Email: EmailStr
-    Full_name: str
+    Fullname: str
 
-class Reset_in(BaseModel):
+class ResetRequestPostIn(BaseModel):
     Username_Email: str
 
-class ValidOtp_in(BaseModel):
-    Otp: int
-    Reset_token: str
+class ChangePasswordPostIn(BaseModel):
+    Password: str = Header(...)
+    Reset_token: str = Header(...)
 
-class ChangePassword_in(BaseModel):
-    Password: str
-    Reset_token: str
+class CredentialsPutIn(BaseModel):
+    pass

@@ -1,9 +1,10 @@
 import emails
 from emails.template import JinjaTemplate
-import config
-from api.users.helpers.logs import console_logger
+
+from config import TestConfig as config
+from api.utils.logs import console_logger
 from api.users.models import *
-import random
+from api.utils import auth
 
 class Mail:
     def __init__(self):
@@ -15,7 +16,7 @@ class Mail:
             "ssl" : config.SMTP_SSL
         }
 
-    def send_email(self, email_to: str, subject_template: str = "", html_template: str = "", renderer: dict = {}):
+    def __send_email(self, email_to: str, subject_template: str = "", html_template: str = "", renderer: dict = {}):
         """
             Sends an email
         """
@@ -33,26 +34,28 @@ class Mail:
         """
             Rendering password reset email
         """
-        subject = f"OTP - Password recovery for user {user.Email}"
+        subject = f"Password recovery for user {user.Email}"
         with open("api/users/helpers/email-templates/reset_password.html") as f:
             template_str = f.read()
-        otp = self.generate_otp()
-        response = self.send_email(
+
+        # Generating reset link
+        reset_token = auth.generate_token("reset_token", user.id)
+        link = config.RESET_LINK + "/{}".format(reset_token)
+
+        response = self.__send_email(
             email_to=user.Email,
             subject_template=subject,
             html_template=template_str,
             renderer={
+                "project_name": config.PROJECT_NAME,
                 "username": user.Username,
                 "email": user.Email,
-                "OTP": otp,
-                "valid_time": config.RESET_OTP_EXPIRATION_TIME_MINUTES,
+                "valid_hours": config.EMAIL_RESET_TOKEN_EXPIRE_HOURS,
+                "link": link,
             },
         )
 
         if response.status_code == 250:
-            self.record_otp(user.Username, otp)
-            return True
+            return "Success"
         else:
-            return False
-
-mail = Mail()
+            return "Failed"
