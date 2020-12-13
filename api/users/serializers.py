@@ -3,10 +3,6 @@ from fastapi import Header
 from pydantic import BaseModel, EmailStr
 import os
 
-class LoginPostIn(BaseModel):
-    Username_Email: str
-    Password: str
-
 class RegisterPostIn(BaseModel):
     Username: str
     Password: str
@@ -16,9 +12,8 @@ class RegisterPostIn(BaseModel):
 class ResetRequestPostIn(BaseModel):
     Username_Email: str
 
-class ChangePasswordPostIn(BaseModel):
-    Password: str = Header(...)
-    Reset_token: str = Header(...)
-
 class CredentialsPutIn(BaseModel):
-    pass
+    Username: Optional[str] = None
+    Email: Optional[EmailStr] = None
+    Fullname: Optional[str] = None
+    Password: Optional[str] = None

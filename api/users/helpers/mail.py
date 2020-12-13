@@ -1,3 +1,4 @@
+import uuid
 import emails
 from emails.template import JinjaTemplate
 
@@ -38,9 +39,12 @@ class Mail:
         with open("api/users/helpers/email-templates/reset_password.html") as f:
             template_str = f.read()
 
-        # Generating reset link
-        reset_token = auth.generate_token("reset_token", user.id)
+        # Reset token
+        reset_token = str(uuid.uuid4())
         link = config.RESET_LINK + "/{}".format(reset_token)
+
+        reset_record = ResetRecords(User_id = str(user.id), Token = reset_token)
+        reset_record.save()
 
         response = self.__send_email(
             email_to=user.Email,

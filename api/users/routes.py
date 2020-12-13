@@ -1,6 +1,7 @@
 import os
+import json
 import asyncio
-import datetime
+from datetime import datetime
 import regex as re
 from jose import jwt
 from fastapi.security.http import HTTPBase
@@ -24,25 +25,25 @@ router = APIRouter()
         404: responses._404(),
         400: responses._400()
     })
-async def login(payload: LoginPostIn):
+async def login(Username_Email: str = Header(...), Password: str = Header(...)):
     """
         Authenticate user
         Creates access and refresh tokens
     """
     # Fetching the user
-    if re.search('^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$', payload.Username_Email):
+    if re.search('^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$', Username_Email):
         try:
-            user = Users.objects.get(Email = payload.Username_Email)
+            user = Users.objects.get(Email = Username_Email)
         except DoesNotExist:
             raise HTTPException(status_code=404, detail="User not found")
     else:
         try:
-            user = Users.objects.get(Username = payload.Username_Email)
+            user = Users.objects.get(Username = Username_Email)
         except DoesNotExist:
             raise HTTPException(status_code=404, detail="User not found")
 
     # Verifying the password
-    if not user.verify_password(payload.Password):
+    if not user.verify_password(Password):
         raise HTTPException(status_code=400, detail="Invalid password")
 
     # Creating tokens
@@ -113,7 +114,7 @@ async def register(payload: RegisterPostIn):
     """
         Register a new user 
     """
-    payload = payload.dict(skip_defaults=True)
+    payload = payload.dict(exclude_none=True)
     if Users.objects(Username__contains = payload["Username"]) or Users.objects(Email__contains = payload["Email"]):
         raise HTTPException(status_code=401, detail="Username Email already taken")
     else:
@@ -146,39 +147,91 @@ async def reset_request(payload: ResetRequestPostIn):
     # Sending reset email
     mail = Mail()
 
-    name = "reset_request_" + datetime.datetime.strftime(datetime.datetime.now(), "%Y-%M-%D_%H:%M:%S") + "_{}".format(user.id)
+    name = "reset_request_" + datetime.strftime(datetime.now(), "%Y-%M-%D_%H:%M:%S") + "_{}".format(user.id)
     task = asyncio.create_task(asyncio.to_thread(mail.send_reset_password_email, user), name=name)
     task.add_done_callback(log_task)
 
-    return {"msg" : "Success"}
+    return JSONResponse(status_code=200, content={"msg" : "Success"})
 
 @router.post("/changepassword",
     responses = {
-        404: responses._404()
+        404: responses._404(detail = "Reset Token Expired",desc="Reset Mail Expired")
     })
-async def change_password(payload: ChangePasswordPostIn):
+async def change_password(Password: str = Header(...), Reset_token: str = Header(...)):
     """
         Change password
     """
     # Validate the reset token 
+    try:
+        record = ResetRecords.objects.get(Token = Reset_token)
+    except DoesNotExist:
+        raise HTTPException(status_code=404)
+    except:
+        raise HTTPException(status_code=500)
 
     # Fetch the user
-
+    user = Users.objects.get(id = record.User_id)
+    
     # Update the password
+    user.save_password_hash(Password)
+    user.save()
 
-    pass
+    # Delete the record
+    record.delete()
+
+    return JSONResponse(status_code=200, content={"msg" : "Success"})
 
 @router.put("/credentials",
     responses = {
-        404: responses._404()
+        404: responses._404(),
+        403: responses._403()
     })
-async def update_user(payload: CredentialsPutIn):
-    # Check if the user token is valid
+async def update_user(payload: CredentialsPutIn, user: dict = Depends(auth.authenticate_user), Password: str = Header(...)):
+    """
+        Update user credentials
+    """
+    # Fetch the user
+    try:
+        user = Users.objects.get(id = user["sub"])
+    except DoesNotExist:
+        raise HTTPException(status_code=404)
+    except:
+        raise HTTPException(status_code=500)
 
-    # Validate the ol password 
+    # Validate the old password 
+    if not user.verify_password(Password):
+        raise HTTPException(status_code=403, detail="Invalid Password")
+    
+    payload = payload.dict(exclude_none=True)
 
-    # Validate the new params
+    # Update the new params
+    if "Password" in payload:
+        console_logger.debug("Updating the password")
+        user.save_password_hash(payload["Password"])
+        user.save()
+        del payload["Password"]
 
-    # Update the new params 
+    user.update(**payload)
 
-    pass
+    return {"msg" : "Success"}
+
+@router.delete("/",
+    responses = {
+        404: responses._404(),
+    })
+async def delete_user(user: dict = Depends(auth.authenticate_user)):
+    """
+        Delete the user
+    """
+    # Fetching the user
+    try:
+        user = Users.objects.get(id = user["sub"])
+    except DoesNotExist:
+        raise HTTPException(status_code=404)
+    except:
+        raise HTTPException(status_code=500)
+
+    # Deleting the user
+    user.delete()
+
+    return {"msg" : "Deleted"}
