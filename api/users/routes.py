@@ -235,3 +235,24 @@ async def delete_user(user: dict = Depends(auth.authenticate_user)):
     user.delete()
 
     return {"msg" : "Deleted"}
+
+@router.get("/",
+    responses = {
+        404: responses._404()
+    })
+async def get_user(user: dict = Depends(auth.authenticate_user)):
+    """
+        Get user
+    """
+    # Fetching the user
+    try:
+        user = Users.objects.get(id = user["sub"])
+    except DoesNotExist:
+        raise HTTPException(status_code=404)
+    except Exception as e:
+        console_logger.debug(e)
+        raise HTTPException(status_code=500)
+
+    content = user.payload()
+
+    return content

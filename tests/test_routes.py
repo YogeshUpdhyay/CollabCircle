@@ -3,7 +3,7 @@ from api import app
 
 client = TestClient(app)
 
-api_prefix = "api/v1/base"
+api_prefix = "api/v1/users"
 
 def test_read_main():
     response = client.get(api_prefix + "/")

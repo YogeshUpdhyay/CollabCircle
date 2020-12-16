@@ -19,6 +19,14 @@ class Users(Document):
     def save_password_hash(self, password):
         self.Password = pwd_context.hash(password)
 
+    def payload(self):
+        payload = {
+            "Username" : self.Username,
+            "Fullname": self.Fullname,
+            "Email": self.Email
+        }
+        return payload
+
 class ActiveSessions(Document):
     User_id = StringField()
     Refresh_token = StringField()

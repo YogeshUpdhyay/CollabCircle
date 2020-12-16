@@ -3,6 +3,7 @@ version: "3"
 services: 
   # web:
   #   build: .
+  #   image: backend:v1
   #   command: python run.py 
   #   ports: 
   #     - 8087:8000
@@ -22,10 +23,14 @@ services:
   mongo-express:
     image: mongo-express
     ports:
-        - 8088:8081
+      - 8088:8081
+    restart: on-failure
     environment:
-        ME_CONFIG_MONGODB_ADMINUSERNAME: root
-        ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
     depends_on:
-        - mongo
+      - mongo
     
+networks:
+  default:
+    name: collab_circle

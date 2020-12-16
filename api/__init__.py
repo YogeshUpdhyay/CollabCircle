@@ -32,7 +32,15 @@ def create_app():
             200: responses._200()
         }
     )
-    app.include_router(profile_router,tags = ["profiles"], prefix="/api/v1/profiles")
+    app.include_router(
+        profile_router,
+        tags = ["profiles"], 
+        prefix="/api/v1/profiles",
+        responses={
+            500: responses._500(),
+            200: responses._200()
+        }
+    )
     app.include_router(projects_router,tags = ["projects"], prefix="/api/v1/projects")
     return app
 

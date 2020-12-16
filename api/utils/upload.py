@@ -3,11 +3,11 @@ import json
 import boto3
 import requests
 from botocore.exceptions import NoCredentialsError
-from api.service.helpers.logs import console_logger
+from api.utils.logs import console_logger
 from config import TestConfig as config
 
 
-def upload_file(self, filepath, target_name):
+def upload_file(fileobj, target_name):
     """
         Upload file
     """
@@ -24,7 +24,7 @@ def upload_file(self, filepath, target_name):
     url = "https://{}.s3.{}.amazonaws.com/{}".format(bucket, location, target_name)
 
     try:
-        s3.upload_file(filepath, bucket, target_name)
+        s3.put_object(Body=fileobj, Bucket=bucket, Key=target_name)
         console_logger.debug("Upload Successful")
         return True, url
     except FileNotFoundError:

@@ -25,7 +25,6 @@ pyasn1==0.4.8
 pycparser==2.20
 pydantic==1.7.3
 pymongo==3.11.2
-pyotp==2.4.1
 python-dateutil==2.8.1
 python-jose==3.2.0
 regex==2020.11.13
@@ -34,4 +33,5 @@ rsa==4.6
 six==1.15.0
 starlette==0.13.6
 urllib3==1.26.2
+uuid==1.30
 uvicorn==0.13.0
