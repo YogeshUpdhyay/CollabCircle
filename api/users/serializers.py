@@ -17,3 +17,15 @@ class CredentialsPutIn(BaseModel):
     Email: Optional[EmailStr] = None
     Fullname: Optional[str] = None
     Password: Optional[str] = None
+
+class LoginPostOut(BaseModel):
+    access_token: str
+    refresh_token: str
+
+class RefreshPostOut(BaseModel):
+    access_token: str
+
+class UserGetOut(BaseModel):
+    Username: str
+    Fullname: str
+    Email: EmailStr

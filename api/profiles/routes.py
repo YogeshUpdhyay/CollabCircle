@@ -15,7 +15,7 @@ from api.users.models import *
 
 router = APIRouter()
 
-@router.get("/",
+@router.post("/",
     responses = {
         404: responses._404()
     })
@@ -54,7 +54,7 @@ async def get_profiles(
 
     return content
 
-@router.post("/",
+@router.post("/create",
     status_code=201,
     responses={
         404: responses._404(),
