@@ -1,13 +1,37 @@
 import FormModal from "../FormModal/FormModal";
 
 const {
-  formField: { firstName, lastName, address1, address2, address3 },
+  formField: {
+    Name,
+    _states,
+    gender,
+    skill,
+    social_profile,
+    instituition,
+    qualification,
+    passing_year,
+    
+    contactNo,
+    title ,
+    description,
+    start_date,
+    end_date
+  },
 } = FormModal;
 
 export default {
-  [firstName.name]: "",
-  [lastName.name]: "",
-  [address1.name]: "",
-  [address2.name]: "",
-  [address3.name]: "",
+  [Name.name]: "",
+  [_states.name]: "",
+  [gender.name]: "",
+  [skill.name]: "",
+  [social_profile.name]: "",
+  [instituition.name]: "",
+  [qualification.name]: "",
+  [passing_year.name]: "",
+  [contactNo.name]: "",
+  [title.name]: "",
+  [description.name]: "",
+  [start_date.name]: "",
+  [end_date.name]: "",
+
 };

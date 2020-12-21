@@ -2,28 +2,43 @@ import * as Yup from 'yup';
 import FormModal from '../FormModal/FormModal' ;
 
 const {
-  formField: {
 
-    firstName,
-    lastName,
-    address1,
-    address2,
-    address3,
-    address4 
-    
+  formField: {
+    Name,
+    contactNo,
+    gender,
+    instituition,
+    qualification,
+    passing_year,
+    _states ,
+    skill,
+    social_profile,
+    resume,
+    title ,
+    description,
+    start_date,
+    end_date
   }
+
 } = FormModal;
 
 
 export default[
+
   Yup.object().shape({
 
-    [firstName.name]: Yup.string().required(`${firstName.requiredErrorMsg}`),
-    [lastName.name]: Yup.string().required(`${lastName.requiredErrorMsg}`),
-    [address1.name]: Yup.string().required(`${address1.requiredErrorMsg}`),
-    [address2.name]: Yup.string().required(`${address2.requiredErrorMsg}`),
-    [address3.name]: Yup.string().required(`${address3.requiredErrorMsg}`),
-    [address4.name]: Yup.string().required(`${address4.requiredErrorMsg}`),
-
+    [Name.name]: Yup.string().required(`${Name.requiredErrorMsg}`),
+    [contactNo.name]: Yup.string().required(`${contactNo.requiredErrorMsg}`),
+    [gender.name]: Yup.string().required(`${gender.requiredErrorMsg}`),
+    [skill.name]: Yup.string().required(`${skill.requiredErrorMsg}`),
+    [social_profile.name]: Yup.string().required(`${social_profile.requiredErrorMsg}`),
+    [resume.name]: Yup.string().required(`${resume.requiredErrorMsg}`),
+    [_states.name]: Yup.string().required(`${_states.requiredErrorMsg}`),
+    [instituition.name]: Yup.string().required(`${instituition.requiredErrorMsg}`),
+    [qualification.name]: Yup.string().required(`${qualification.requiredErrorMsg}`),
+    [passing_year.name]: Yup.string().required(`${passing_year.requiredErrorMsg}`),
+    [title.name]: Yup.string().required(`${title.requiredErrorMsg}`),
+    [description.name]: Yup.string().required(`${description.requiredErrorMsg}`),
+    
   })
 ];

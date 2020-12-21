@@ -23,8 +23,6 @@ import InitialValues from '../../MyProfile/EditProfile/components/FormModal/Init
 import FormModal from '../../MyProfile/EditProfile/components/FormModal/FormModal';
 import useStyles from '../../MyProfile/EditProfile/styles' ;
 
-
-
 const steps = ['Basic Details' , 'Educational Details' , 'Professional Details' ] ;
 const {formId , formField} = FormModal ; 
 
@@ -56,7 +54,6 @@ export default function EditProfile() {
   async function submitForm(values, actions) {
 
     await sleep(1000);
-    alert(JSON.stringify(values, null, 2));
     actions.setSubmitting(false);
     setActiveStep(activeStep + 1);
 
@@ -69,8 +66,8 @@ export default function EditProfile() {
     } 
     else {
       setActiveStep(activeStep + 1);
-      actions.setTouched({});
-      actions.setSubmitting(false);
+      // actions.setTouched({});
+      // actions.setSubmitting(false);
     }
 
   }
