@@ -14,10 +14,9 @@ class Profiles(Document):
     Resumefile = URLField(default=None)
     Bio = StringField(default=None)
 
-    def payload(self):
+    def detail_payload(self):
         payload = {
-            "id": self.id,
-            "User": self.User,
+            "id": str(self.id),
             "Avatar": self.Avatar,
             "Name": self.Name,
             "Gender": self.Gender,
@@ -28,3 +27,21 @@ class Profiles(Document):
             "Bio": self.Bio
         }
         return payload
+
+    def list_payload(self):
+        payload = {
+            "id": str(self.id),
+            "Avatar": self.Avatar,
+            "Name": self.Name,
+            "Socialmedia_links": self.Socialmedia_links,
+            "Skills": self.Skills,
+            "Bio": self.Bio
+        }
+        return payload
+
+class EducationalDeatils(Document):
+    User = ReferenceField(Users, reverse_delete_rule=CASCADE, required=True, unique=True)
+    College_name = StringField()
+    Passing_year = StringField()
+    Qualification = StringField()
+    CGPA_pecentage = StringField()

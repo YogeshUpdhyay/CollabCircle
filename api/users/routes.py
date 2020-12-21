@@ -20,6 +20,8 @@ from api.utils.tasklogger import log_task
 router = APIRouter()
 
 @router.post('/login',
+    status_code=200,
+    response_model=LoginPostOut,
     responses = {
         404: responses._404(),
         400: responses._400()
@@ -56,6 +58,8 @@ async def login(Username_Email: str = Header(...), Password: str = Header(...)):
     return JSONResponse(content=LoginPostOut(access_token=access_token, refresh_token=refresh_token).dict(), status_code=status.HTTP_200_OK)
 
 @router.post('/refresh',
+    status_code=200,
+    response_model=RefreshPostOut,
     responses = {
         404: responses._404()
     })
@@ -80,6 +84,8 @@ async def refresh(refresh_token: str = Header(...)):
     return JSONResponse(content=RefreshPostOut(access_token = access_token).dict(), status_code=status.HTTP_200_OK)
 
 @router.post('/logout',
+    status_code=200,
+    response_model=util_models.DefaultResponseModel,
     responses = {
         400: responses._400()
     })
@@ -101,6 +107,7 @@ async def logout(refresh_token: str = Header(...)):
 
 @router.post("/register", 
     status_code=201,
+    response_model=util_models.DefaultResponseModel,
     responses = {
         401: responses._401()
     })
@@ -119,6 +126,8 @@ async def register(payload: RegisterPostIn):
     return JSONResponse(content = util_models.DefaultResponseModel(detail = "Created").dict(), status_code=status.HTTP_201_CREATED)
 
 @router.post("/resetrequest",
+    status_code=200,
+    response_model=util_models.DefaultResponseModel,
     responses = {
         404: responses._404()
     })
@@ -148,6 +157,8 @@ async def reset_request(payload: ResetRequestPostIn):
     return JSONResponse(content = util_models.DefaultResponseModel(detail = "Successful").dict(), status_code=status.HTTP_200_OK)
 
 @router.post("/changepassword",
+    status_code=200,
+    response_model=util_models.DefaultResponseModel,
     responses = {
         404: responses._404(detail = "Reset Token Expired",desc="Reset Mail Expired")
     })
@@ -177,6 +188,8 @@ async def change_password(Password: str = Header(...), Reset_token: str = Header
     return JSONResponse(content = util_models.DefaultResponseModel(detail = "Successful").dict(), status_code=status.HTTP_200_OK)
 
 @router.put("/credentials",
+    status_code=200,
+    response_model=util_models.DefaultResponseModel,
     responses = {
         404: responses._404(),
         403: responses._403()
@@ -212,6 +225,8 @@ async def update_user(payload: CredentialsPutIn, user: dict = Depends(auth.authe
     return JSONResponse(content = util_models.DefaultResponseModel(detail = "Successful").dict(), status_code=status.HTTP_200_OK)
 
 @router.delete("/",
+    status_code=200,
+    response_model=util_models.DefaultResponseModel,
     responses = {
         404: responses._404(),
     })
@@ -234,6 +249,8 @@ async def delete_user(user: dict = Depends(auth.authenticate_user)):
     return JSONResponse(content = util_models.DefaultResponseModel(detail = "Deleted").dict(), status_code=status.HTTP_200_OK)
 
 @router.get("/",
+    status_code=200,
+    response_model=UserGetOut,
     responses = {
         404: responses._404()
     })

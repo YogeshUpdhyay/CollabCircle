@@ -26,22 +26,20 @@ def create_app():
     app.include_router(
         user_router, 
         tags = ["users"],
-        prefix="/api/v1/users",
+        prefix="/api/v1/user",
         responses={
-            500: responses._500(),
-            200: responses._200()
+            500: responses._500()
         }
     )
     app.include_router(
         profile_router,
         tags = ["profiles"], 
-        prefix="/api/v1/profiles",
+        prefix="/api/v1/profile",
         responses={
-            500: responses._500(),
-            200: responses._200()
+            500: responses._500()
         }
     )
-    app.include_router(projects_router,tags = ["projects"], prefix="/api/v1/projects")
+    app.include_router(projects_router,tags = ["project"], prefix="/api/v1/projects")
     return app
 
 app = create_app()
