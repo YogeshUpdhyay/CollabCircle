@@ -1,4 +1,4 @@
-from mongoengine import Document, CASCADE
+from mongoengine import Document, CASCADE, EmbeddedDocument
 from mongoengine.fields import *
 
 from api.users.models import Users
@@ -39,9 +39,28 @@ class Profiles(Document):
         }
         return payload
 
-class EducationalDeatils(Document):
+class EducationalDetails(Document):
     User = ReferenceField(Users, reverse_delete_rule=CASCADE, required=True, unique=True)
     College_name = StringField()
     Passing_year = StringField()
     Qualification = StringField()
     CGPA_pecentage = StringField()
+
+class Projects(EmbeddedDocument):
+    Project_title = StringField()
+    Description = StringField()
+    Date_of_completion = DateField()
+    
+    def payload(self):
+        payload = {
+            "Project_title": self.Project_title,
+            "Description": self.Description,
+            "Date_of_completion": self.Date_of_completion
+        }
+        return payload
+
+class PrevProjects(Document):
+    User = ReferenceField(Users, reverse_delete_rule=True, required=True, unique=True)
+    Projects = ListField(EmbeddedDocumentField(Projects))
+
+

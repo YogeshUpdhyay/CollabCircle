@@ -1,24 +1,14 @@
 from typing import List, Optional
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, Form
+from enum import Enum
 from pydantic import *
+import datetime
 from api.utils.util_models import PagiantionModel
 
-
-class CreateProfilePostIn(BaseModel):
-    Name: str
-    Gender: Optional[str] = None
-    Contactno: Optional[str] = None
-    Socialmedia_links: Optional[List[str]] = None
-    Skills: Optional[List[str]] = None
-    Bio: Optional[str] = None
-
-class UpdateProfilePutIn(BaseModel):
-    Name: Optional[str] = None
-    Gender: Optional[str] = None
-    Contactno: Optional[str] = None
-    Socialmedia_links: Optional[List[str]] = None
-    Skills: Optional[List[str]] = None
-    Bio: Optional[str] = None
+class GenderChoices(str, Enum):
+    Male = "Male"
+    Female = "Female"
+    NA = "Rather Not Say"
 
 class ProfilesOut(BaseModel):
     id: str
@@ -59,3 +49,17 @@ class EducationalDeatilsPutIn(BaseModel):
     Passing_year: Optional[str] = None
     Qualification: Optional[str] = None
     CGPA_pecentage: Optional[str] = None
+
+class SubProjects(BaseModel):
+    Project_title: Optional[str] = None
+    Description: Optional[str] = None
+    Date_of_completion: datetime.date
+
+class PrevProjectsPostIn(BaseModel):
+    Projects: List[SubProjects]
+
+class PrevProjectsGetOut(BaseModel):
+    Projects: Optional[List[SubProjects]]
+
+class PrevProjectsPutIn(BaseModel):
+    Projects: Optional[List[SubProjects]]
