@@ -10,6 +10,7 @@ const {
     instituition,
     qualification,
     passing_year,
+    cgpa,
     _states ,
     skill,
     social_profile,
@@ -37,6 +38,7 @@ export default[
     [instituition.name]: Yup.string().required(`${instituition.requiredErrorMsg}`),
     [qualification.name]: Yup.string().required(`${qualification.requiredErrorMsg}`),
     [passing_year.name]: Yup.string().required(`${passing_year.requiredErrorMsg}`),
+    [cgpa.name]: Yup.string().required(`${cgpa.requiredErrorMsg}`),
     [title.name]: Yup.string().required(`${title.requiredErrorMsg}`),
     [description.name]: Yup.string().required(`${description.requiredErrorMsg}`),
     

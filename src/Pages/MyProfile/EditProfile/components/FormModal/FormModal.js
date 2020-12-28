@@ -57,6 +57,11 @@ export default {
       label : 'Passing Year' ,
       requiredErrorMsg :'Required'
     },
+    cgpa: {
+      name : 'cgpa' ,
+      label : 'CGPA / Percentage' ,
+      requiredErrorMsg :'Required'
+    },
     title :{
       name : 'title',
       label : 'Title of the Project' ,

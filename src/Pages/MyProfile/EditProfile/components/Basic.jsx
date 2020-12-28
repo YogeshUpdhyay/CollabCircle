@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { SimpleFileUpload } from 'formik-material-ui';
 import {Field} from 'formik';
 import '../EditProfile.css' ;
+import FormModal from './FormModal/FormModal.js' ;
 
 
 
@@ -37,7 +38,13 @@ export default function Basic(props) {
       skill,
       social_profile,
       resume
-    }
+    },
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    isValid
   } = props;
 
   const genders = [
@@ -299,3 +306,4 @@ export default function Basic(props) {
    </React.Fragment>
   )
 }
+

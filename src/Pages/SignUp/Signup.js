@@ -102,6 +102,8 @@ function Signup() {
         }
     }
 
+
+    
   const handleInputChange = (e)=>{
     const { name, value } = e.target
         setValues({

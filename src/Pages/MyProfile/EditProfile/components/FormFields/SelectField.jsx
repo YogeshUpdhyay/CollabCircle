@@ -16,7 +16,6 @@ function SelectField(props) {
   const { value: selectedValue } = field;
   const [touched, error] = at(meta, 'touched', 'error');
   const isError = touched && error && true;
-  
   function _renderHelperText() {
     if (isError) {
       return <FormHelperText>{error}</FormHelperText>;

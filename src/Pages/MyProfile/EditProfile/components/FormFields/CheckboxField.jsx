@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { at } from 'lodash';
 import { useField } from 'formik';
@@ -13,9 +12,12 @@ export default function CheckboxField(props) {
   const { label, ...rest } = props;
   const [field, meta, helper] = useField(props);
   const { setValue } = helper;
-
+  const [touched, error] = at(meta, 'touched', 'error');
+  let errorControl = touched && error;
+  if (errorControl === undefined) errorControl = true;
+  else if (errorControl === true) errorControl = false;
+  else errorControl = true;
   function _renderHelperText() {
-    const [touched, error] = at(meta, 'touched', 'error');
     if (touched && error) {
       return <FormHelperText>{error}</FormHelperText>;
     }
@@ -26,7 +28,7 @@ export default function CheckboxField(props) {
   }
 
   return (
-    <FormControl {...rest}>
+    <FormControl {...rest} error={errorControl}>
       <FormControlLabel
         value={field.checked}
         checked={field.checked}

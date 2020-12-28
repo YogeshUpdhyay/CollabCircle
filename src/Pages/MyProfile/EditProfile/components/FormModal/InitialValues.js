@@ -10,7 +10,7 @@ const {
     instituition,
     qualification,
     passing_year,
-    
+    cgpa,
     contactNo,
     title ,
     description,
@@ -28,6 +28,7 @@ export default {
   [instituition.name]: "",
   [qualification.name]: "",
   [passing_year.name]: "",
+  [cgpa.name]: "",
   [contactNo.name]: "",
   [title.name]: "",
   [description.name]: "",

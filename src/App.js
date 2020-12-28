@@ -6,7 +6,7 @@ import Signup from './Pages/SignUp/Signup';
 import HomePage from './Pages/HomePage/Homepage' ;
 import AboutUs from './Pages/AboutUs/AboutUs' ;
 import EditProfile from './Pages/MyProfile/EditProfile/EditProfile' ;
-// import ViewProfile from './Pages/MyProfile/ViewProfile' ;
+import BrowseProjects from './Pages/BrowseProjects/BrowseProjects' ;
 
 function App() {
   return (
@@ -18,8 +18,8 @@ function App() {
         <Route path="/login" exact component={Login}/>
         <Route path="/Signup" component={Signup}/>
         <Route path="/AboutUs" component={AboutUs}/>
-        <Route path="/EditProfile" component={EditProfile}/>
-        {/* <Route path="/ViewProfile" component={ViewProfile}/> */}
+        <Route path="/EditProfile" component={EditProfile} />
+        <Route path="/BrowseProjects" component={BrowseProjects} />
       </Switch>
     </div>
     </Router>

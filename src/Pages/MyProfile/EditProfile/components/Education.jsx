@@ -10,7 +10,8 @@ export default function Education(props) {
     formField: {
       instituition ,
       passing_year ,
-      qualification
+      qualification,
+      cgpa
     }
   } = props;
   const qualifications = [
@@ -83,8 +84,8 @@ export default function Education(props) {
       </Grid>
       <Grid item xs={12} sm={6}>
           <InputField 
-          name={passing_year.name} 
-          label={passing_year.label} 
+          name={cgpa.name} 
+          label={cgpa.label} 
           fullWidth />
       </Grid>
      </Grid>
