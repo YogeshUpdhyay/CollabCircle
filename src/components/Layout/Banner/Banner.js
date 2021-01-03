@@ -4,13 +4,16 @@ import './Banner.css' ;
 
 function Banner() {
     return (
-        <div className = "banner">  
-        
-            <div className = "banner__info">
-                <h1>Join the Developer's Community </h1>
-                <br></br>
-                <h4>Build Projects , Practice Coding Skills and Learn Together </h4>
+        <div>  
+            <div className = "banner_first">
             </div>
+            <div className = "banner_second">
+            </div>
+            <div className = "banner_third">
+            </div>
+            <div className = "banner_fourth">
+            </div>
+            
         </div>
     )
 }

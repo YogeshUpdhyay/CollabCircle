@@ -10,9 +10,6 @@ export default function Homepage() {
     <div className = "Home">
       <NavBar/>
       <Banner/> 
-      <AboutUs id = "AboutUs"/>
-      <br></br>
-      <br></br>
       <Footer>
             <Footer.Wrapper>
             <Footer.Row>

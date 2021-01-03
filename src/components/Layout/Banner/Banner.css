@@ -1,13 +1,36 @@
 
-.banner{
-  height : 100vh ;
-  position: relative ;
-  /* background-image: url("../../assets/bg_1.jpg"); */
-  background-image: url("../../../assets/bg_1.jpg");
-  box-sizing: content-box;
-  background-position: center;
+
+.banner_first {
+  width: 1350px;
+  height: 650px;
+  background-image: url("../../../assets/1.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  background-position: center;
+}
+.banner_second {
+  width: 1350px;
+  height: 650px;
+  background-image: url("../../../assets/2.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.banner_third {
+  width: 1350px;
+  height: 650px;
+  background-image: url("../../../assets/3.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.banner_fourth {
+  width: 1350px;
+  height: 650px;
+  background-image: url("../../../assets/4.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .banner__AboutUs{
@@ -55,25 +78,39 @@
   align-items: center;
 }
 
-.banner__info > button{
-  background-color: bisque;
-  color: black;
-  text-transform: inherit;
-  margin-top: 20px;
-  font-weight: 600 ;
 
-}
+@media only screen and (max-width: 767px) {
  
-.banner__info > button :hover{
-  background-color: white;
-  color: #ff385c;
-  text-transform: inherit;
-  margin-top: 20px;
-  font-weight: 600 ;
-
+  .banner_first {
+    background-image: url("../../../assets/1.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 400px;
+    height: 200px;
+  }
+  .banner_second {
+    background-image: url("../../../assets/2.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 400px;
+    height: 200px;
+  }
+  .banner_third {
+    background-image: url("../../../assets/3.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 400px;
+    height: 200px;
+  }
+  .banner_fourth {
+    background-image: url("../../../assets/4.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 400px;
+    height: 200px;
+  }
 }
-
- .banner__info > button:hover {
-  background-color: white;
-  color: #ff7779;
-} 
