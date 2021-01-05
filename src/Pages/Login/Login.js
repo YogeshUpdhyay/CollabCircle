@@ -1,9 +1,12 @@
 import { CardContent, Grid, Switch, TextField, makeStyles, Card } from '@material-ui/core'
-import React,{useState} from 'react';  
+import React,{useState, useEffect} from 'react';  
 import {Link} from 'react-router-dom';
 import './Login.css';
 
-import img from '../../assets/Login.png' ;
+import img from '../../assets/Login.png';
+
+import {useSelector, useDispatch} from 'react-redux';
+import {postSignIn} from '../../actions/postSignIn';
 
 
 const useStyles = makeStyles({
@@ -34,9 +37,13 @@ const initialFValues = {
 }
 
 function Login() {
+  const signin = useSelector((state) => state.SignIn);
+  console.log(signin.isLogged);
+  const dispatch = useDispatch();
 
   const [values, setValues] = useState(initialFValues);
   const [display, setDisplay] = useState({displays:"none", color: "red"})
+  const [count, setCount] = useState(0);
 
   const classes = useStyles()
 
@@ -52,11 +59,35 @@ function Login() {
     e.preventDefault();
     console.log("why sway why");
     if(values.username && values.password){
-      console.log("why sway why");
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'accept':'application/json',
+          "Username-Email":values.username,
+          "Password":values.password
+        },
+        body:""
+      };
+
+      dispatch(postSignIn(requestOptions));
+
       setDisplay({...display, display:"block", color:" rgb(25, 212, 50)", message:"Loading..."});
     }
   }
 
+  useEffect(()=>{
+    if(count){
+      if(signin.data.detail)
+        setDisplay({...display, display:"block", color:"red", message:signin.data.detail});
+      else if(signin.data.access_token){
+        // window.location.href='https://www.google.com/';
+        console.log(signin.data);
+      }
+    }else{
+      setCount(prevcount=>prevcount+1);
+    }
+  },[signin.data]);
+  console.log(window.Location)
   return (
       
       <div className={classes.root}>
