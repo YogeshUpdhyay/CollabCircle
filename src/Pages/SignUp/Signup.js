@@ -5,6 +5,9 @@ import './Signup.css';
 
 import img from '../../assets/Login.png' ;
 
+import {useSelector, useDispatch} from 'react-redux';
+import {postRegister} from '../../actions/postRegister';
+
 
 const useStyles = makeStyles({
 
@@ -38,12 +41,15 @@ const initialFValues = {
 
 
 function Signup() {
+  const register = useSelector((state) => state.Register);
+  const dispatch = useDispatch();
 
   const classes = useStyles()
 
   const [values,setValues] = useState(initialFValues);
   const [errors, setErrors] = useState({});
   const [display, setDisplay] = useState({displays:"none",color:"red"});
+  const [count, setCount] = useState(0);
 
   const validate = (fieldValues = values) => {
         let temp = { ...errors }
@@ -86,11 +92,35 @@ function Signup() {
       })
       },[values.cpassword])
 
+      useEffect(()=>{
+        if(count){
+          if(register.data.detail == "Created")
+            setDisplay({...display, display:"block", color:" rgb(25, 212, 50)", message:register.data.detail});
+          else
+            setDisplay({...display, display:"block", color:"red", message:register.data.detail});
+        }else{
+          setCount(prevcount=>prevcount+1);
+        }
+      },[register.data]);
+
       const handleSubmit = e => {
-        console.log("refbsufbwefb")
         e.preventDefault()
         if (errors.name=="" && errors.email=="" && errors.mobile=="" && errors.password=="" && errors.cpassword==""){
-          console.log('hello');
+          const requestOptions = {
+            method: 'POST',
+            headers: {
+              'accept':'application/json',
+              'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+              "Username":values.email,
+              "Password":values.password,
+              "Email":values.email,
+              "Fullname":values.name
+            })
+          };
+
+          dispatch(postRegister(requestOptions));
 
           setDisplay({...display, display:"block", color:" rgb(25, 212, 50)", message:"Loading..."})
         }

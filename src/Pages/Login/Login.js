@@ -28,10 +28,34 @@ const useStyles = makeStyles({
 
 });
 
+const initialFValues = {
+  username : "",
+  password : ""
+}
 
 function Login() {
 
+  const [values, setValues] = useState(initialFValues);
+  const [display, setDisplay] = useState({displays:"none", color: "red"})
+
   const classes = useStyles()
+
+  const handleInputChange = (e)=>{
+    const {name,value} = e.target;
+    setValues({
+      ...values,
+      [name]: value
+    })
+  }
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    console.log("why sway why");
+    if(values.username && values.password){
+      console.log("why sway why");
+      setDisplay({...display, display:"block", color:" rgb(25, 212, 50)", message:"Loading..."});
+    }
+  }
 
   return (
       
@@ -47,16 +71,38 @@ function Login() {
             <div class="main ">
               <p class="sign" align="center">Sign in</p>
               <form className="form1">
-                  <TextField className="field" type="text" label="Username" variant="outlined" error={false} helperText=""/>
+                  <TextField 
+                    className="field" 
+                    autoComplete="OFF"
+                    name="username"
+                    type="text" 
+                    value={values.username}
+                    label="Username" 
+                    variant="outlined" 
+                    error={false} 
+                    helperText=""
+                    onChange={handleInputChange}
+                  />
                   <div style={{margin:'15px'}}></div>
-                  <TextField className="field" type="password" label="Password" variant="outlined"  error={false} helperText=""/>
+                  <TextField 
+                    className="field" 
+                    type="password" 
+                    name="password"
+                    value={values.password}
+                    label="Password" 
+                    variant="outlined"  
+                    error={false} 
+                    helperText=""
+                    onChange={handleInputChange}
+                  />
                   <div style={{margin:'15px'}}></div>
                   {/* <input class="un " type="text" align="center" placeholder="Username"/>
                   <input class="pass" type="password" align="center" placeholder="Password"/> */}
-                  <div><a class="submit" align="center">Sign in</a></div>
+                  <div display={display.displays} style={{marginBottom:'15px',color:display.color}}>{display.message}</div>
+                  <div><a class="submit" align="center" onClick={handleSubmit}>Sign in</a></div>
                   <p class="forgot" align="center">
                     <Link className="tag" to="/Signup">Sign Up</Link>
-                  </p> 
+                  </p>
               </form>
             </div>
           </Grid>
