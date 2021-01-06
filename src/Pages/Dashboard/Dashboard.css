@@ -6,7 +6,7 @@
   transform: translatey(-10%);
 }
 
-.card.big{
+.dcard.big{
   height: 40vh;
   text-align: center;
 }
