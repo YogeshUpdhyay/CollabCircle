@@ -6,8 +6,8 @@ import {
   NavMenu,
   NavBtn,
   NavBtnLink
-} from './NavBarElements';
-import './NavBar.css'
+} from './NavbarElements';
+import './Navbar.css'
 
 const Navbar = () => {
   return (

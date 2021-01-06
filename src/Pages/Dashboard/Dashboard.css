@@ -1,0 +1,59 @@
+*{
+  box-sizing: border-box;
+}
+
+.MyProjects{
+  transform: translatey(-10%);
+}
+
+.card.big{
+  height: 40vh;
+  text-align: center;
+}
+
+.btn{
+  background-color: #FEF6FF;
+  color: #8236E4;
+  transition: 0.7s;
+  border-color: #8236E4;
+}
+
+
+
+.dcard{
+  height: 30vh;
+  background-color: #8236E4;
+  color: #FEF6FF;
+  transition: 0.5s;
+  width: auto ;
+}
+
+.dcard:hover{
+  background-color: #FEF6FF;
+  color: #8236E4;
+  box-shadow: 5px 5px 5px;
+}
+
+.dcard:hover .btn{
+  background-color: #8236E4;
+  color: #FEF6FF;
+}
+
+.dcard.small{
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.dcard.small .card-body{
+  transform: translateY(30%);
+}
+
+@media (max-width: 992px){
+  .MyProjects{
+    transform: translateY(15%);
+  }
+}

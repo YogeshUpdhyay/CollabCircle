@@ -80,7 +80,7 @@ function Login() {
       if(signin.data.detail)
         setDisplay({...display, display:"block", color:"red", message:signin.data.detail});
       else if(signin.data.access_token){
-        // window.location.href='https://www.google.com/';
+        window.location.href='DashBoard';
         console.log(signin.data);
       }
     }else{
