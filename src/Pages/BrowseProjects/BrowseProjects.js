@@ -29,6 +29,7 @@ import { red } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import idea from "../../assets/idea.png";
 import "./BrowseProjects.css";
+import browse from "../../assets/BrowseProject.png"
 
 const useStyles = makeStyles((muiBaseTheme) => ({
   card: {
@@ -40,6 +41,10 @@ const useStyles = makeStyles((muiBaseTheme) => ({
     "&:hover": {
       boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)",
     },
+  },
+  image:{
+    width: '100vh',
+    height: 'auto',
   },
   media: {
     paddingTop: "25.25%",
@@ -77,7 +82,8 @@ export default function BrowseProjects() {
       <div style={{ backgroundColor: "white" }}>
         <React.Fragment>
           <CssBaseline />
-          <Grid className="banner_browseprojects"></Grid>
+          {/* <Grid className="banner_browseprojects"></Grid> */}
+          <img src={browse} style={{width: "100vw",height: 'auto'}}/>
           <br />
           <div>
             <br></br>
@@ -91,7 +97,7 @@ export default function BrowseProjects() {
             <Grid item xs>
               <Card className={classes.card}>
                 <CardMedia className={classes.media}>
-                  <img src={idea} className="bulb" />
+                  <img src={idea} className="bulb" width="100%"/>
                 </CardMedia>
                 <CardContent className={classes.content}>
                   <Typography

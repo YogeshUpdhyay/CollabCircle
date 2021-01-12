@@ -7,6 +7,7 @@ import HomePage from './Pages/HomePage/Homepage' ;
 import AboutUs from './Pages/AboutUs/AboutUs' ;
 import EditProfile from './Pages/MyProfile/EditProfile/EditProfile' ;
 import BrowseProjects from './Pages/BrowseProjects/BrowseProjects' ;
+import BrowseProject from './Pages/BrowseProject/BrowseProject' ;
 import Dashboard from './Pages/Dashboard/Dashboard';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/EditProfile" component={EditProfile} />
         <Route path="/BrowseProjects" component={BrowseProjects} />
         <Route path="/DashBoard" component={Dashboard} />
+        <Route path="/BrowseProject" component={BrowseProject} />
       </Switch>
     </div>
     </Router>
