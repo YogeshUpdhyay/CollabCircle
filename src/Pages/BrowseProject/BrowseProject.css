@@ -1,0 +1,23 @@
+h2.intro-header {
+  font-family: "montserrat-regular", sans-serif;
+  /* font-size: 3.4rem; */
+  line-height: 1.324;
+  color: #151515;
+  position: relative;
+  padding-bottom: 3.6rem;
+}
+
+h2.intro-header::before {
+  display: block;
+  content: "";
+  height: 3px;
+  width: 90px;
+  background: -webkit-linear-gradient(to top, #9E88B2,#9E88B2);
+   background: -moz-linear-gradient(to top,#9E88B2,#9E88B2);
+   background: -o-linear-gradient(to top,#9E88B2,#9E88B2);
+   background: linear-gradient(to top,#9E88B2,#9E88B2);
+  position: absolute;
+  
+  bottom: 40%;
+  right:47%;
+}
