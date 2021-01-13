@@ -9,6 +9,8 @@ import EditProfile from './Pages/MyProfile/EditProfile/EditProfile' ;
 import BrowseProjects from './Pages/BrowseProjects/BrowseProjects' ;
 import BrowseProject from './Pages/BrowseProject/BrowseProject' ;
 import Dashboard from './Pages/Dashboard/Dashboard';
+import UpdateSettings from './Pages/Settings/UpdateSettings';
+
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
         <Route path="/BrowseProjects" component={BrowseProjects} />
         <Route path="/DashBoard" component={Dashboard} />
         <Route path="/BrowseProject" component={BrowseProject} />
+        <Route path="/UpdateSettings" component={UpdateSettings} />
       </Switch>
     </div>
     </Router>
