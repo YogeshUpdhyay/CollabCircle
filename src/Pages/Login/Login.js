@@ -38,7 +38,6 @@ const initialFValues = {
 
 function Login() {
   const signin = useSelector((state) => state.SignIn);
-  console.log(signin.isLogged);
   const dispatch = useDispatch();
 
   const [values, setValues] = useState(initialFValues);
@@ -57,7 +56,6 @@ function Login() {
 
   const handleSubmit = (e)=>{
     e.preventDefault();
-    console.log("why sway why");
     if(values.username && values.password){
       const requestOptions = {
         method: 'POST',
@@ -87,7 +85,6 @@ function Login() {
       setCount(prevcount=>prevcount+1);
     }
   },[signin.data]);
-  console.log(window.Location)
   return (
       
       <div className={classes.root}>

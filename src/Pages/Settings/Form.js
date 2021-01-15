@@ -167,7 +167,10 @@ const Form = withFormik({
             .oneOf([Yup.ref("password")], "Password does not match")
     }),
 
-    handleSubmit: (values, { setSubmitting }) => {
+    handleSubmit: (values,errors, { setSubmitting }) => {
+        if(errors){
+            console.log("this better work")
+        }
         setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);

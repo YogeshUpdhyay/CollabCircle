@@ -1,9 +1,14 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import Navbar from '../../components/Layout/DashboardNavbar/Navbar';
 import strike0 from '../../strike0.png';
 import './Dashboard.css';
+import {useSelector} from 'react-redux';
 
 export default function Dashboard(){
+  const signin = useSelector((state) => state.SignIn);
+  console.log(signin.isLogged);
+  console.log(signin);
+  
   return(
     <div>
       <Navbar />
