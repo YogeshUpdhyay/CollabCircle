@@ -8,8 +8,27 @@ import {
   NavBtnLink
 } from './NavbarElements';
 import './Navbar.css'
+import {postLogOut} from '../../../actions/postSignIn';
+import {useDispatch} from 'react-redux';
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+
+  const handleClick = ()=>{
+    if(localStorage.getItem('access_token')){
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'accept':'application/json',
+          "refresh-token":`${localStorage.getItem('refresh_token')}`
+        },
+        body:""
+      };
+
+      dispatch(postLogOut(requestOptions));
+    }
+  }
+
   return (
     <>
       <Nav>
@@ -29,7 +48,7 @@ const Navbar = () => {
           </NavLink>
         </NavMenu>
         <NavBtn>
-          <NavBtnLink to='/Login'> Log In</NavBtnLink>
+          <NavBtnLink to='/Login' onClick={handleClick}> {localStorage.getItem('access_token') ? "Log Out": "Log in"}</NavBtnLink>
         </NavBtn>
       </Nav>
     </>

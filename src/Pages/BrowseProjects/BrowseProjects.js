@@ -1,4 +1,3 @@
-import { divide } from "lodash";
 import React from "react";
 import NavBar from "../../components/Layout/NavBar/NavBar";
 import Footer from "../../components/Layout/Footer/Footer";
@@ -9,23 +8,11 @@ import {
   Container,
   Grid,
   Card,
-  Button,
-  CardHeader,
   CardMedia,
-  CardContent,
-  Collapse,
-  Avatar,
-  IconButton,
-  FavoriteIcon,
-  ShareIcon,
-  ExpandMoreIcon,
-  MoreVertIcon,
-  Divider,
+  CardContent
 } from "@material-ui/core";
 
 import SearchBar from "material-ui-search-bar";
-import clsx from "clsx";
-import { red } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import idea from "../../assets/idea.png";
 import "./BrowseProjects.css";
@@ -74,7 +61,7 @@ const useStyles = makeStyles((muiBaseTheme) => ({
 export default function BrowseProjects() {
   const classes = useStyles();
 
-  const [expanded, setExpanded] = React.useState(false);
+  // const [expanded, setExpanded] = React.useState(false);
 
   return (
     <div>

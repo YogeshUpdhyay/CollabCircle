@@ -11,3 +11,14 @@ export function postSignIn(requestOptions){
       })
   }
 }
+
+export function postLogOut(requestOptions){
+  return(dispatch)=>{
+    fetch("http://35.154.56.92:8087/api/v1/user/logout", requestOptions)
+      .then(response=>response.json())
+      .then(data=>{
+        console.log(data);
+        dispatch({type:"LOGOUT", payload: data});
+      })
+  }
+}

@@ -1,7 +1,6 @@
 import React from 'react'
 import Navbar from '../../components/Layout/NavBar/NavBar'
 import ProjectCard from './components/ProjectCard'
-import browse from '../../assets/BrowseProject.png'
 import "./BrowseProject.css"
 
 function BrowseProjects() {

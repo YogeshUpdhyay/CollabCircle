@@ -1,4 +1,4 @@
-import { CardContent, Grid, Switch, TextField, makeStyles, Card } from '@material-ui/core'
+import { CardContent, Grid, TextField, makeStyles, Card } from '@material-ui/core'
 import React,{useState, useEffect} from 'react';  
 import {Link} from 'react-router-dom';
 import './Login.css';
@@ -75,8 +75,16 @@ function Login() {
 
   useEffect(()=>{
     if(count){
-      if(signin.data.detail)
+      if(signin.data.detail && (signin.data.detail !== "Successfully Logged Out" || signin.data.detail !== "User already logged out"))
         setDisplay({...display, display:"block", color:"red", message:signin.data.detail});
+      else if(signin.data.detail === "Successfully Logged Out"){
+        setDisplay({...display, display:"block", color:"rgb(25, 212, 50)", message:signin.data.detail});
+
+      }
+      else if(signin.data.detail === "User already logged out"){
+        setDisplay({...display, display:"block", color:"rgb(25, 212, 50)", message:"Successfully Logged Out"});
+
+      }
       else if(signin.data.access_token){
         window.location.href='DashBoard';
         console.log(signin.data);

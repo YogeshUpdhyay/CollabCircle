@@ -8,9 +8,7 @@ import {
 	AccordionDetails,
 	Typography,
 	Grid,
-	Button,
-	TextField
-
+	Button
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Form from '../../Pages/Settings/Form'

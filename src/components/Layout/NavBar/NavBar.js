@@ -32,7 +32,7 @@ const Navbar = () => {
           </NavLink>
         </NavMenu>
         <NavBtn>
-          <NavBtnLink to='/Login'> Log In</NavBtnLink>
+          <NavBtnLink to='/Login'> {localStorage.getItem('access_token') ? "Log Out": "Log in"} </NavBtnLink>
         </NavBtn>
       </Nav>
     </>

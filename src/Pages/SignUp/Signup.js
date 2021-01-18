@@ -1,4 +1,4 @@
-import { CardContent, Grid, Switch, TextField, makeStyles, Card } from '@material-ui/core'
+import { CardContent, Grid, TextField, makeStyles, Card } from '@material-ui/core'
 import React,{useState,useEffect} from 'react';  
 import {Link} from 'react-router-dom';
 import './Signup.css';
@@ -82,9 +82,9 @@ function Signup() {
         
         // console.log(values.password);
         // console.log(values.cpassword);
-        if(temp.password=="")
-          temp.cpassword = (values.password==values.cpassword) ? "":"Passwords do not match";
-        else if(temp.password!="" && values.password!=""){
+        if(temp.password==="")
+          temp.cpassword = (values.password===values.cpassword) ? "":"Passwords do not match";
+        else if(temp.password!=="" && values.password!==""){
           temp.cpassword = "Please fill the password field correctly"
         }
         setErrors({
@@ -94,7 +94,7 @@ function Signup() {
 
       useEffect(()=>{
         if(count){
-          if(register.data.detail == "Created")
+          if(register.data.detail === "Created")
             setDisplay({...display, display:"block", color:" rgb(25, 212, 50)", message:register.data.detail});
           else
             setDisplay({...display, display:"block", color:"red", message:register.data.detail});
@@ -105,7 +105,7 @@ function Signup() {
 
       const handleSubmit = e => {
         e.preventDefault()
-        if (errors.name=="" && errors.email=="" && errors.mobile=="" && errors.password=="" && errors.cpassword==""){
+        if (errors.name==="" && errors.email==="" && errors.mobile==="" && errors.password==="" && errors.cpassword===""){
           const requestOptions = {
             method: 'POST',
             headers: {
@@ -124,7 +124,7 @@ function Signup() {
 
           setDisplay({...display, display:"block", color:" rgb(25, 212, 50)", message:"Loading..."})
         }
-        else if(values.name=="" || values.email=="" || values.mobile=="" || values.password=="" || values.cpassword==""){
+        else if(values.name==="" || values.email==="" || values.mobile==="" || values.password==="" || values.cpassword===""){
           setDisplay({...display, displays:"block", message:"please fill in all the fields", color:"red"})
         }
         else{
@@ -151,7 +151,7 @@ function Signup() {
         <Grid container justify={"center"}>
           <Grid item lg={6} md={6} >
 
-            <img className="image" src={img}/>
+            <img className="image" src={img} alt=""/>
           </Grid>
           <Grid item lg={6} md={6}>
             <div class="main ">
