@@ -5,8 +5,8 @@ import userReducer from './user';
 
 const allReducers = combineReducers({
   Register: registerReducer,
-  SignIn: signInReducer,
   GetUser: userReducer,
+  SignIn: signInReducer
 })
 
 export default allReducers;
