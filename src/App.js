@@ -10,6 +10,7 @@ import BrowseProjects from './Pages/BrowseProjects/BrowseProjects' ;
 import BrowseProject from './Pages/BrowseProject/BrowseProject' ;
 import Dashboard from './Pages/Dashboard/Dashboard';
 import UpdateSettings from './Pages/Settings/UpdateSettings';
+import Setting from './Pages/Setting/Setting';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/DashBoard" component={Dashboard} />
         <Route path="/BrowseProject" component={BrowseProject} />
         <Route path="/UpdateSettings" component={UpdateSettings} />
+        <Route path="/Setting" component={Setting} />
       </Switch>
     </div>
     </Router>
