@@ -16,6 +16,8 @@ import {
   CardActions
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Cookies from 'js-cookie';
+import { postNewToken } from '../../actions/postSignIn';
 
 const useStyles = makeStyles({
 	container: {
@@ -44,17 +46,36 @@ function Setting() {
   console.log(info);
   const dispatch = useDispatch();
 
-	const classes = useStyles();
-
-  useEffect(()=>{
+  const classes = useStyles();
+  
+  const newToken = async()=>{
+    while(!Cookies.get('access_token')){
+      console.log('inside newToken while loop');
+      let response = await fetch("http://35.154.56.92:8087/api/v1/user/refresh",{
+        method: 'POST',
+        headers: {
+          'accept':'application/json',
+          'refresh-token':`${Cookies.get('refresh_token')}`
+        }
+      });
+      let data = await response.json();
+      console.log(data);
+      var inFiveMinutes = new Date(new Date().getTime() + 5 * 60 * 1000);
+      Cookies.set('access_token',data.access_token,{expires: inFiveMinutes});
+    }
     const requestOptions = {
       method: 'GET',
       headers: {
         'accept':'application/json',
-        'Authorization':`Bearer ${localStorage.getItem('access_token')}`
+        'Authorization':`Bearer ${Cookies.get('access_token')}`
       }
     };
     dispatch(getUser(requestOptions));
+    return;
+  }
+
+  useEffect(()=>{
+    newToken();    
   },[]);
 
   useEffect(()=>{

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import { BrowserRouter as Router,Switch,Route } from 'react-router-dom';
 import './App.css';
 import Login from './Pages/Login/Login';
@@ -11,9 +11,51 @@ import BrowseProject from './Pages/BrowseProject/BrowseProject' ;
 import Dashboard from './Pages/Dashboard/Dashboard';
 import UpdateSettings from './Pages/Settings/UpdateSettings';
 import Setting from './Pages/Setting/Setting';
+import Cookies from 'js-cookie';
 
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(0);
+
+  const handleTokenRefresh = ()=>{
+    const refToken = Cookies.get('refresh_token');
+    if(!refToken){
+      setLoggedIn(0);
+      return
+    }
+    else{
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'accept':'application/json',
+          "refresh-token":`${Cookies.get('refresh_token')}`
+        },
+        body:""
+      }
+      fetch("http://35.154.56.92:8087/api/v1/user/refresh",requestOptions)
+        .then(response=>response.json())
+        .then(data=>{
+          console.log(data);
+        })
+        .catch(err=>{
+          console.log(err);
+        })
+    }
+  }
+
+  useEffect(()=>{
+    const token = Cookies.get('access_token');
+    if(!!token){
+      setLoggedIn(1);
+    }
+    else if(!!Cookies.get('refresh_token')){
+      setLoggedIn(0);
+    }
+    else{
+      handleTokenRefresh();
+    }
+  },[loggedIn])
+
   return (
     <Router>
     <div className="App">
