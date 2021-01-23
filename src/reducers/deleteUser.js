@@ -1,7 +1,8 @@
- const userReducer = (state={data:{}}, action)=>{
+const deleteReducer = (state={data:{}}, action)=>{
   switch(action.type){
-    case "GETUSER":
+    case "DELETEUSER":
       console.log(action.payload);
+      console.log(action);
       return {...state, data: action.payload}
 
     default:
@@ -9,4 +10,4 @@
   }
 }
 
-export default userReducer;
+export default deleteReducer;

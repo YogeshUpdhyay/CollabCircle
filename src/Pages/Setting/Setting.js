@@ -47,6 +47,7 @@ function Setting() {
   const [values,setValues] = useState(initialFValues);
   const info = useSelector((state)=>state.GetUser);
   const edittedUser = useSelector((state)=>state.UpdateUser);
+  const deletedUser = useSelector((state)=>state.DeleteUser);
   const [edit, setEdit] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   console.log(info);
@@ -109,6 +110,18 @@ function Setting() {
       }
     }
   },[edittedUser])
+
+  useEffect(()=>{
+    console.log(deletedUser);
+    if(deletedUser.data){
+      console.log(deletedUser.data.detail)
+      if(deletedUser.data.detail==="Deleted"){
+        Cookies.remove('access_token');
+        Cookies.remove('refresh_token');
+        window.location.href='Signup';
+      }
+    }
+  },[deletedUser])
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors }
