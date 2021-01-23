@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import Navbar from '../../components/Layout/DashboardNavbar/Navbar'
 import {useSelector, useDispatch} from 'react-redux';
-import { getUser } from '../../actions/getUser';
+import { deleteUser, getUser } from '../../actions/getUser';
 import { makeStyles } from '@material-ui/core/styles';
 import {
 	Accordion,
@@ -19,6 +19,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Cookies from 'js-cookie';
 import { postNewToken } from '../../actions/postSignIn';
 import { putUpdateUser } from '../../actions/putUpdateUser';
+import Modal from './Modal';
 
 const useStyles = makeStyles({
 	container: {
@@ -47,6 +48,7 @@ function Setting() {
   const info = useSelector((state)=>state.GetUser);
   const edittedUser = useSelector((state)=>state.UpdateUser);
   const [edit, setEdit] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   console.log(info);
   const dispatch = useDispatch();
 
@@ -103,7 +105,6 @@ function Setting() {
         setValues({...values, fullName: info.data.Fullname, username: info.data.Username, email: info.data.Email});
         setTimeout(()=>{
           setDisplay({...display, displays:"none", message:""});
-          setEdit(true);
         },3000)
       }
     }
@@ -175,6 +176,40 @@ function Setting() {
 
   const handleSubmit = (e)=>{
     updateUser();
+    e.preventDefault();
+  }
+
+  const DeleteUser = async()=>{
+    if(!Cookies.get('access_token')){
+      console.log('inside newToken while loop');
+      let response = await fetch("http://35.154.56.92:8087/api/v1/user/refresh",{
+        method: 'POST',
+        headers: {
+          'accept':'application/json',
+          'refresh-token':`${Cookies.get('refresh_token')}`
+        }
+      });
+      let data = await response.json();
+      console.log(data);
+      var inFiveMinutes = new Date(new Date().getTime() + 5 * 60 * 1000);
+      Cookies.set('access_token',data.access_token,{expires: inFiveMinutes});
+      return
+    }
+    
+    const requestOptions = {
+      method: 'DELETE',
+      headers: {
+        'accept':'application/json',
+        'Authorization':`Bearer ${Cookies.get('access_token')}`
+      }
+    }
+
+    dispatch(deleteUser(requestOptions));
+
+  }
+
+  const handleDelete = (e)=>{
+    DeleteUser();
     e.preventDefault();
   }
 
@@ -316,13 +351,14 @@ function Setting() {
 											</Grid>
 
 											<Grid items xs={12} sm={6}>
-												<Button variant="contained" color="secondary" style={{ marginLeft: "20px" }} >Yes</Button>
+												<Button variant="contained" color="secondary" style={{ marginLeft: "20px" }} onClick={()=>setIsOpen(true)}>Yes</Button>
+                        
 											</Grid>
-
+                      <Modal open={isOpen} onClose={()=>setIsOpen(false)} handleDelete={handleDelete}/>
 										</Grid>
 									</AccordionDetails>
 								</Accordion>
-
+                
               </div>
             </Grid>
           </Grid>
