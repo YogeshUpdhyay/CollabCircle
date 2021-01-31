@@ -164,10 +164,7 @@ export default function CreateProjects() {
                             values = {values.skills_req}
 
                             onChange={(e ,values) => {
-                              setSkill((s) => {
-                                console.log(values)
-                                return ([...s ,{ title : e.target.title}]) 
-                              })
+                              setSkill(values);
                             }}
                             renderInput={(params) => (
                               <TextField
