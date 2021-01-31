@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { values } from "lodash";
 
 
 
@@ -14,8 +15,8 @@ const styles = () => ({
     card: {
         maxWidth: 700,
         marginTop: 50,
-        marginBottom : 50,
-       
+        marginBottom: 50,
+
     },
     container: {
         display: "Flex",
@@ -37,19 +38,20 @@ const form = props => {
         handleChange,
         handleBlur,
         handleSubmit,
-        handleReset
+        handleReset,
+
     } = props;
 
     return (
-      
-      
-        
-        
-        <form onSubmit={handleSubmit}>
+
+
+        <form
+            onSubmit={handleSubmit}
+        >
             <Card className={classes.card}>
 
                 <CardContent>
-                <h4>Enter your details</h4>
+                    <h4>Enter your details</h4>
                     <TextField
                         id="Name"
                         label="Name"
@@ -103,6 +105,7 @@ const form = props => {
                         variant="outlined"
                         fullWidth
                     />
+                    
                     <TextField
                         id="confirmPassword"
                         label="Confirm Password"
@@ -116,30 +119,33 @@ const form = props => {
                         variant="outlined"
                         fullWidth
                     />
+                 
                 </CardContent>
                 <CardActions className={classes.actions}>
                     <Button type="submit" color="primary" disabled={isSubmitting}>
                         SUBMIT
-        </Button>
+                    </Button>
                     <Button color="secondary" onClick={handleReset}>
                         CLEAR
-        </Button>
+                    </Button>
                 </CardActions>
             </Card>
         </form>
 
-        
-       
+
+
     );
 };
 
 const Form = withFormik({
+
     mapPropsToValues: ({
         Name,
         email,
         contact_no,
         password,
-        confirmPassword
+        confirmPassword,
+
     }) => {
         return {
             Name: Name || "",
@@ -167,15 +173,20 @@ const Form = withFormik({
             .oneOf([Yup.ref("password")], "Password does not match")
     }),
 
-    handleSubmit: (values,errors, { setSubmitting }) => {
-        if(errors){
-            console.log("this better work")
-        }
+   
+
+    handleSubmit: (values,  { setSubmitting }) => {
+       
+       
         setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
         }, 1000);
+       
+       
     }
 })(form);
+
+
 
 export default withStyles(styles)(Form);

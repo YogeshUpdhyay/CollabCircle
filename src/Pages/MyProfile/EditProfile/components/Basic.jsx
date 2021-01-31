@@ -307,3 +307,28 @@ export default function Basic(props) {
   )
 }
 
+const skills = [
+  {title : 'Java' , key : '1'},
+  {title : 'JavaScript' , key : '2'},
+  {title : 'React.js' , key : '3'},
+  {title : 'Angular.js' , key : '4'},
+  {title : 'Vue.js' , key : '5'},
+  {title : 'Python' , key : '6'},
+  {title : 'Go' , key : '7'},
+  {title : 'Node.js' , key : '8'},
+  {title : 'PHP' , key : '9'},
+  {title : 'JQuery' , key : '10'},
+  {title : 'Git' , key : '11'},
+  {title : 'SQL' , key : '12'},
+  {title : 'NoSQL' , key : '13'},
+  {title : 'MongoDB' , key : '14'},
+  {title : 'Linux' , key : '15'},
+  {title : 'AWS' , key : '16'},
+  {title : 'Docker' , key : '17'},
+  {title : 'Kubernetes' , key : '18'},
+  {title : 'HTML' , key : '19'},
+  {title : 'CSS' , key : '20'},
+  {title : 'C' , key : '21'},
+  {title : 'C++' , key : '21'},
+]
+
