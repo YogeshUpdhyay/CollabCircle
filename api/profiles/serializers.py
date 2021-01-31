@@ -53,7 +53,7 @@ class EducationalDeatilsPutIn(BaseModel):
 class SubProjects(BaseModel):
     Project_title: Optional[str] = None
     Description: Optional[str] = None
-    Date_of_completion: datetime.date
+    Date_of_completion: Optional[datetime.date] = None
 
 class PrevProjectsPostIn(BaseModel):
     Projects: List[SubProjects]
