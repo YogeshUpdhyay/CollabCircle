@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 //components
 import NavBar from "../../../components/Layout/NavBar/NavBar";
 import CreateProject from "../../../assets/createProject.png";
@@ -11,12 +11,11 @@ import {
   Card,
   CardContent,
 } from "@material-ui/core";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
 import theme from "../../../components/Theme/theme";
 import { ThemeProvider } from "@material-ui/core/styles";
 //Form
-import {useForm , Controller} from 'react-hook-form' ;
+import { useForm } from 'react-hook-form';
 //css
 
 const useStyles = makeStyles({
@@ -41,9 +40,9 @@ const useStyles = makeStyles({
   img_createProject: {
     maxWidth: '400px'
   },
-  errorMessage : {
-    color :"red",
-    display : "flex" ,
+  errorMessage: {
+    color: "red",
+    display: "flex",
     justifyContent: "flex-start"
   }
 
@@ -53,14 +52,13 @@ const useStyles = makeStyles({
 export default function CreateProjects() {
 
   const classes = useStyles();
-  const {register , handleSubmit , errors , control , setValue} = useForm();
+  const { register, handleSubmit, errors, control, setValue } = useForm();
   const onSubmit = (data) => {
-    console.log(data) ;
+    console.log(data);
+    alert("Thanks for submitting")
+    
   }
-
-  const [tags, setTags] = useState({})
-  console.log(tags)
- console.log(errors);
+  console.log(errors);
   return (
     <ThemeProvider theme={theme}>
       <div>
@@ -95,7 +93,7 @@ export default function CreateProjects() {
           >
             <Grid container variant="outlined" spacing={2}>
               <Grid item lg={12} xs={12} sm={12}>
-                <form  onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} >
                   <Card className={classes.card}>
                     <CardContent>
                       <h4>Create Project</h4>
@@ -107,14 +105,14 @@ export default function CreateProjects() {
                             variant="outlined"
                             placeholder="Title of the project"
                             label="Title"
-                            name = "title"
+                            name="title"
                             lg={12}
                             fullWidth="true"
-                            defaultValue = ""
-                            inputRef= {register({required: true})}
+                            defaultValue=""
+                            inputRef={register({ required: true })}
                           >
                           </TextField>
-                          {errors.title && <span className={classes.errorMessage}>This field is required</span>}
+                          {errors.title && <span className={classes.errorMessage}>This field is req</span>}
                         </Grid>
                         <Grid item lg={12} md={12} xs={12}>
                           <TextField
@@ -124,56 +122,38 @@ export default function CreateProjects() {
                             lg={12}
                             fullWidth="true"
                             name="description"
-                            inputRef = {register({required: true})}
+                            inputRef={register({ required: true })}
                           >
                           </TextField>
                           {errors.description && <span className={classes.errorMessage}>This field is required</span>}
                         </Grid>
                         <br></br>
                         <Grid item lg={12} md={12} xs={12}>
-                          <Controller
-                            name = "skills_req"
-                            control = {control}
-                            
-                            render={(
-                              { onChange, onBlur, value, name, ref },
-                              { invalid, isTouched, isDirty }
-                            ) => (
-                              <Autocomplete
-                              multiple
-                              options={skills}
-                              getOptionLabel={(option) => option}
-                              defaultValue={[skills[3]]}
-                              renderInput={(params) => (
-                                <TextField
-                                  {...params}
-                                  variant="standard"
-                                  label="Skills Required"
-                                  placeholder="Skills required"
-                                  inputRef = {ref}
-                                  onChange =  {(e) => {setTags(e.target.value)}}
-                                  value = {tags}
-                                />
-                              )}
-                            />
-                            )}
+                          <TextField
+                            variant="outlined"
+                            placeholder="Mention the tech stack used"
+                            label="Skills Required"
+                            lg={12}
+                            fullWidth="true"
+                            name="skills_req"
+                            inputRef={register({ required: true })}
                           >
-                          </Controller>
+                          </TextField>
+                          {errors.skills_req && <span className={classes.errorMessage}>This field is required</span>}
                         </Grid>
 
                         <Grid item lg={12} md={12} xs={12}>
                           <TextField
-                            id="standard-number"
-                            label="Vacany"
-                            placeholder="Enter the number of teammates required"
-                            type="number"
-                            InputLabelProps={{
-                              shrink: true,
-                            }}
+                            variant="outlined"
+                            placeholder="No of members required"
+                            label="Vacancy"
+                            lg={12}
                             fullWidth="true"
+                            name="vacancy"
+                            inputRef={register({ required: true })}
                           >
-
                           </TextField>
+                          {errors.vacancy && <span className={classes.errorMessage}>This field is required</span>}
                         </Grid>
 
                         <Grid container justify="flex-end">
@@ -182,9 +162,11 @@ export default function CreateProjects() {
                             variant="contained"
                             color="secondary"
                             className={classes.btn_submit}
+                      
                           >
                             Submit
                           </Button>
+                        
                         </Grid>
                       </Grid>
                     </CardContent>
@@ -227,10 +209,10 @@ export default function CreateProjects() {
 // ];
 
 const skills = [
-  'Java' , 
-  'Python' , 
-  'JavaScript', 
-  'CSS' , 'HTML' ,'Node.js' , 'React.js'
+  'Java',
+  'Python',
+  'JavaScript',
+  'CSS', 'HTML', 'Node.js', 'React.js'
 ]
 
 
