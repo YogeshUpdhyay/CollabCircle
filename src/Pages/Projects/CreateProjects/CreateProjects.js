@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 //components
-import NavBar from "../../../components/Layout/NavBar/NavBar";
-import CreateProject from "../../../assets/createProject.png";
+import CreateProject from "../../../assets/createproj.png";
 //Dependencies
 import {
   Grid,
@@ -14,6 +13,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import theme from "../../../components/Theme/theme";
 import { ThemeProvider } from "@material-ui/core/styles";
+import DashNav from '../../../components/Layout/Dashboard_navbar/Dashboard_Nav'
 //Form
 import { useForm } from 'react-hook-form';
 //css
@@ -37,13 +37,18 @@ const useStyles = makeStyles({
   btn_submit: {
     marginTop: "2em",
   },
-  img_createProject: {
-    maxWidth: '400px'
-  },
   errorMessage: {
     color: "red",
     display: "flex",
     justifyContent: "flex-start"
+  },
+  img_createProject: {
+    height : "65vh" , 
+    marginTop : "50px" , 
+    [theme.breakpoints.only('md')]:{
+      height : "40vh" , 
+      maxWidth : '500px'
+    }
   }
 
 });
@@ -62,22 +67,20 @@ export default function CreateProjects() {
   return (
     <ThemeProvider theme={theme}>
       <div>
-        <NavBar />
+      <DashNav/>
 
-        <Grid container>
-          <Grid item lg={6} md={12} xs={12} sm={12}>
+        <Grid container style = {{ marginTop: '5em' }}>
+          <Grid item lg={6} md={12} xs={12}  >
             <Grid container>
-              <Grid item xs={12} md={12} lg={12}>
-                <img src={CreateProject} style={{ maxWidth: "400px" }}></img>
-              </Grid>
+              
 
               <Grid item lg={12} md={12} xs={12}>
-
-                <Typography variant="h5" style={{ color: "white" }}>
-                  Got an idea for project ?
+              <img  className = {classes.img_createProject} src={CreateProject} ></img>
+                <Typography variant="h4" style={{ color: "#ffffff" , fontFamily: "Lato" ,fontWeight: "bold"}}>
+                  GOT AN IDEA FOR PROJECT??
                 </Typography>
 
-                <Typography variant="h6" style={{ color: "white" }}>
+                <Typography variant="h6" style={{ color: "#ffffff" }}>
                   Post your project idea and find a partner to collab
                 </Typography>
               </Grid>
@@ -89,16 +92,16 @@ export default function CreateProjects() {
             lg={6}
             md={12}
             xs={12}
-            style={{ backgroundColor: "#ffffff", height: "90vh" }}
+           
           >
-            <Grid container variant="outlined" spacing={2}>
-              <Grid item lg={12} xs={12} sm={12}>
+            <Grid container variant="outlined" spacing={2} style = {{marginTop : "2em"}}>
+              <Grid item lg={12} xs={12} sm={12} style = {{ display: "flex" , alignItems: 'center' ,justifyContent: 'center'}}> 
                 <form onSubmit={handleSubmit(onSubmit)} >
-                  <Card className={classes.card}>
+                  <Card className={classes.card} >
                     <CardContent>
                       <h4>Create Project</h4>
                       <br></br>
-                      <Grid container spacing={2}>
+                      <Grid container spacing={1}>
                         <Grid item lg={12} md={12} xs={12}>
 
                           <TextField
@@ -112,7 +115,7 @@ export default function CreateProjects() {
                             inputRef={register({ required: true })}
                           >
                           </TextField>
-                          {errors.title && <span className={classes.errorMessage}>This field is req</span>}
+                          {errors.title && <span className={classes.errorMessage}>Required*</span>}
                         </Grid>
                         <Grid item lg={12} md={12} xs={12}>
                           <TextField
@@ -125,7 +128,7 @@ export default function CreateProjects() {
                             inputRef={register({ required: true })}
                           >
                           </TextField>
-                          {errors.description && <span className={classes.errorMessage}>This field is required</span>}
+                          {errors.description && <span className={classes.errorMessage}>Required*</span>}
                         </Grid>
                         <br></br>
                         <Grid item lg={12} md={12} xs={12}>
@@ -139,7 +142,7 @@ export default function CreateProjects() {
                             inputRef={register({ required: true })}
                           >
                           </TextField>
-                          {errors.skills_req && <span className={classes.errorMessage}>This field is required</span>}
+                          {errors.skills_req && <span className={classes.errorMessage}>Required*</span>}
                         </Grid>
 
                         <Grid item lg={12} md={12} xs={12}>
@@ -153,7 +156,7 @@ export default function CreateProjects() {
                             inputRef={register({ required: true })}
                           >
                           </TextField>
-                          {errors.vacancy && <span className={classes.errorMessage}>This field is required</span>}
+                          {errors.vacancy && <span className={classes.errorMessage}>Required*</span>}
                         </Grid>
 
                         <Grid container justify="flex-end">

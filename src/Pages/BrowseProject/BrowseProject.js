@@ -1,22 +1,50 @@
 import React from 'react'
-import Navbar from '../../components/Layout/NavBar/NavBar'
+import {
+  Grid,
+  Typography,
+  Card,
+  CardContent
+} from "@material-ui/core";
+import DashNav from '../../components/Layout/Dashboard_navbar/Dashboard_Nav'
 import ProjectCard from './components/ProjectCard'
 import browse from '../../assets/BrowseProject.png'
+import Banner from '../../assets/BrowseProj_banner.png'
 import "./BrowseProject.css"
+import { BrandingWatermarkOutlined } from '@material-ui/icons';
 
 function BrowseProjects() {
 
-  const projects = [{name:'Mast',description:'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique enim voluptatem rem tempora culpa ipsa iusto placeat quaerat, minima praesentium necessitatibus aliquid facilis dolorem, nulla quis ullam eius dolore dolores.', vacancies:'3',date:'yay'},{name:'Trump',description:'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique enim voluptatem rem tempora culpa ipsa iusto placeat quaerat, minima praesentium necessitatibus aliquid facilis dolorem, nulla quis ullam eius dolore dolores.', vacancies:'4',date:'yayyy'}, {name:'Trump',description:'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique enim voluptatem rem tempora culpa ipsa iusto placeat quaerat, minima praesentium necessitatibus aliquid facilis dolorem, nulla quis ullam eius dolore dolores.', vacancies:'4',date:'yayyy'}]
+  const projects = [{ name: 'Employee Management', description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique enim voluptatem rem tempora culpa ipsa iusto placeat quaerat, minima praesentium necessitatibus aliquid facilis dolorem, nulla quis ullam eius dolore dolores.', vacancies: '3', date: 'yay', skills: 'Angular.js , Node.js' }, { name: 'Cricket Score Updates', description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique enim voluptatem rem tempora culpa ipsa iusto placeat quaerat, minima praesentium necessitatibus aliquid facilis dolorem, nulla quis ullam eius dolore dolores.', vacancies: '2', date: 'yayyy', skills: 'Python' }, { name: 'E-Commerce Website', description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique enim voluptatem rem tempora culpa ipsa iusto placeat quaerat, minima praesentium necessitatibus aliquid facilis dolorem, nulla quis ullam eius dolore dolores.', vacancies: '4', date: 'yayyy', skills: 'React.js , Django' }]
 
   return (
-    <div className="pb-4">
-      <Navbar />
+    <div className="pb-4" style={{ marginTop: '5em' }}>
+      <DashNav />
+      <Grid container>
+        <Grid item xs={12} sm={12} md={6} lg={5}>
+          <img src={Banner} style={{ maxWidth: '500px' }}></img>
+        </Grid>
+        <Grid item xs={12} sm={12} md={6} lg={7} style={{display: 'flex' , justifyContent: 'center'}}>
+
+           <div style = {{color: 'white' , marginTop:'5em' , fontFamily :'Lato' , maxWidth : '600px'}}>
+           <h2>BROWSE PROJECTS</h2>
+           <br></br>
+           <h5>Find interesting projects and get started with an execution plan</h5>
+           <h5>Explore the mini projects that are available and click on a project that appeals to you.</h5>
+           <h5>Before starting a project, be sure to select a project that
+           will add value to your career goals and matches your programming interests.</h5>
+           </div>
+
+        </Grid>
+      </Grid>
       {/* <img src={browse} style={{width: "100vw",height: 'auto'}}/> */}
-      <div className="container">
-        <h2 className="intro-header">Browse Projects</h2>
-        {projects.map(project=>(
-          <ProjectCard project={project}/>
-        ))}
+      <div className="container" style={{ backgroundColor: 'white' , marginTop:'2em' }}>
+        <br></br>
+        <div>
+          {projects.map(project => (
+            <ProjectCard project={project} />
+          ))}
+        </div>
+        <br></br>
       </div>
     </div>
   )

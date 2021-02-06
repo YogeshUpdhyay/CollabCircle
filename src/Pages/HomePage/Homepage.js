@@ -24,7 +24,7 @@ export default function Homepage() {
     <div className="Home">
       <NavBar />
       <div>
-        <Grid container spacing={1}>
+        <Grid container spacing={1} style = {{ marginTop:'5em'}}>
 
           <Grid item xs={12} md={6} lg={6} className="header_background">
             <h2 className="header_banner">Join the developers community and create amazing projects with your peers</h2>
@@ -40,7 +40,7 @@ export default function Homepage() {
         </br>
         <Grid container spacing={1}>
           <Grid item xs={12} md={12} lg={12} className="header_background">
-            <Typography variant = "h4" className = "heading">Start your developer journey</Typography>
+            <Typography variant = "h4" className = "heading">START YOUR DEVELOPER JOURNEY</Typography>
           </Grid>
           <ul class="timeline">
 
