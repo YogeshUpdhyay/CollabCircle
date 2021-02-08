@@ -4,18 +4,15 @@ import {Link} from 'react-router-dom';
 import './Login.css';
 
 import img from '../../assets/Login.png';
-
 import {useSelector, useDispatch} from 'react-redux';
 import {postSignIn} from '../../actions/postSignIn';
 
 
 const useStyles = makeStyles({
-
   root: {
     display:'flex',
     justifyContent:'center',
     marginTop:'5em' ,
-    
   },
   bullet: {
     display: 'inline-block',
@@ -28,7 +25,6 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
-
 });
 
 const initialFValues = {
@@ -75,8 +71,16 @@ function Login() {
 
   useEffect(()=>{
     if(count){
-      if(signin.data.detail)
+      if(signin.data.detail && (signin.data.detail !== "Successfully Logged Out" || signin.data.detail !== "User already logged out"))
         setDisplay({...display, display:"block", color:"red", message:signin.data.detail});
+      else if(signin.data.detail === "Successfully Logged Out"){
+        setDisplay({...display, display:"block", color:"rgb(25, 212, 50)", message:signin.data.detail});
+
+      }
+      else if(signin.data.detail === "User already logged out"){
+        setDisplay({...display, display:"block", color:"rgb(25, 212, 50)", message:"Successfully Logged Out"});
+
+      }
       else if(signin.data.access_token){
         window.location.href='DashBoard';
         console.log(signin.data);

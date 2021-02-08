@@ -8,8 +8,9 @@ import AboutUs from './Pages/AboutUs/AboutUs' ;
 import EditProfile from './Pages/MyProfile/EditProfile/EditProfile' ;
 import BrowseProject from './Pages/BrowseProject/BrowseProject' ;
 import Dashboard from './Pages/Dashboard/Dashboard';
-import UpdateSettings from './Pages/Settings/UpdateSettings';
+import UpdateSettings from './Pages/Setting/Setting';
 import CreateProject from './Pages/Projects/CreateProjects/CreateProjects';
+import MyProjects from './Pages/Projects/MyProjects/MyProjects';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/CreateProject" component={CreateProject} />
         <Route path="/DashBoard" component={Dashboard} />
         <Route path="/BrowseProject" component={BrowseProject} />
+        <Route path="/MyProjects" component={MyProjects} />
         <Route path="/UpdateSettings" component={UpdateSettings} />
       </Switch>
     </div>

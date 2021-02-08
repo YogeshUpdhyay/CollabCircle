@@ -5,14 +5,13 @@ import {
   Card,
   CardContent
 } from "@material-ui/core";
-import DashNav from '../../components/Layout/Dashboard_navbar/Dashboard_Nav'
-import ProjectCard from './components/ProjectCard'
-import browse from '../../assets/BrowseProject.png'
-import Banner from '../../assets/BrowseProj_banner.png'
-import "./BrowseProject.css"
+import DashNav from '../../../components/Layout/Dashboard_navbar/Dashboard_Nav'
+import ProjectCard from '../../BrowseProject/components/ProjectCard'
+import Banner from '../../../assets/myprojs.png'
+import "../../BrowseProject/BrowseProject.css"
 
 
-function BrowseProjects() {
+function MyProjects() {
 
   const projects = [{ name: 'Employee Management', description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique enim voluptatem rem tempora culpa ipsa iusto placeat quaerat, minima praesentium necessitatibus aliquid facilis dolorem, nulla quis ullam eius dolore dolores.', vacancies: '3', date: 'yay', skills: 'Angular.js , Node.js' }, { name: 'Cricket Score Updates', description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique enim voluptatem rem tempora culpa ipsa iusto placeat quaerat, minima praesentium necessitatibus aliquid facilis dolorem, nulla quis ullam eius dolore dolores.', vacancies: '2', date: 'yayyy', skills: 'Python' }, { name: 'E-Commerce Website', description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique enim voluptatem rem tempora culpa ipsa iusto placeat quaerat, minima praesentium necessitatibus aliquid facilis dolorem, nulla quis ullam eius dolore dolores.', vacancies: '4', date: 'yayyy', skills: 'React.js , Django' }]
 
@@ -21,7 +20,7 @@ function BrowseProjects() {
       <DashNav />
       <Grid container>
         <Grid item xs={12} sm={12} md={6} lg={5}>
-          <img src={Banner} style={{ maxWidth: '500px' }}></img>
+          <img src={Banner} style={{ maxWidth: '300px' }}></img>
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={7} style={{display: 'flex' , justifyContent: 'center'}}>
 
@@ -50,4 +49,4 @@ function BrowseProjects() {
   )
 }
 
-export default BrowseProjects
+export default MyProjects

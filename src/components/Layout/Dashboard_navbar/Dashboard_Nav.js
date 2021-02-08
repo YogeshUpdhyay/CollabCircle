@@ -155,6 +155,7 @@ export default function PrimarySearchAppBar() {
     >
 
       <MenuItem onClick={handleMenuClose} component={Link} to="/UpdateSettings" style={{ textDecoration: 'none' }}>Settings</MenuItem>
+      <MenuItem onClick={handleMenuClose} style={{ textDecoration: 'none' }} component = {Link} to = "/MyProjects">Taskboard</MenuItem>
       <MenuItem onClick={handleMenuClose} style={{ textDecoration: 'none' }} >My account</MenuItem>
       <MenuItem onClick={handleMenuClose} style={{ textDecoration: 'none' }}>Log Out</MenuItem>
     </Menu>

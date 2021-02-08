@@ -3,9 +3,12 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import PropTypes from 'prop-types';
 import strike0 from '../../strike0.png';
 import './Dashboard.css';
-import {useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import DashNav from '../../components/Layout/Dashboard_navbar/Dashboard_Nav'
+import {
+ Button
+} from '@material-ui/core'
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -29,34 +32,36 @@ ElevationScroll.propTypes = {
   window: PropTypes.func,
 };
 
-export default function Dashboard(props){
+export default function Dashboard(props) {
   const signin = useSelector((state) => state.SignIn);
   console.log(signin.isLogged);
   console.log(signin);
-  
-  return(
+
+  return (
     <div>
 
-      <DashNav/>
+      <DashNav />
 
-      <div className="container" style={{marginTop:'2em'}}>
+      <div className="container" style={{ marginTop: '5%' }}>
         <div className="row">
-        <div className="col-md-12 my-5">
-          <div className="card dcard big">
+          <div className="col-md-12 my-5">
+            <div className="card dcard big">
               <div className="card-body dcard-body">
                 <div className="row">
                   <div className="col-md-7">
                     <h3 className="card-title">My Projects</h3>
                     <p className="card-text">
-                    Create , Connect , Inspire
+                      Create , Connect , Inspire
                     <br></br>
-                      Go and track your progress , view your collaborated projects 
+                      Go and track your progress , view your collaborated projects
                     <br></br>
-                   
+                      <Button variant="contained"  style = {{ marginTop : '5%' , color : 'white' , textAlign : 'center'}}>
+                      <Link className="tag" to="/MyProjects" style = {{textDecoration: 'none' , color : 'purple' }}>Click here</Link>
+                      </Button>
                     </p>
                   </div>
                   <div className="col-md-5 d-none d-md-block">
-                    <img className="img-fluid MyProjects" src={strike0}/>
+                    <img className="img-fluid MyProjects" src={strike0} style = {{marginTop : '-7%'}}/>
                   </div>
                 </div>
               </div>
@@ -69,7 +74,7 @@ export default function Dashboard(props){
               <div className="card-body dcard-bosy">
                 <div className="col-md-12">
                   <h3 className="card-title">
-                  <Link className="tag" to="/BrowseProject">Browse Projects</Link>
+                    <Link className="tag" to="/BrowseProject">Browse Projects</Link>
                   </h3>
                 </div>
               </div>
@@ -79,9 +84,9 @@ export default function Dashboard(props){
             <div className="card dcard small">
               <div className="card-body dcard-body">
                 <div className="col-md-12">
-                <h3 className="card-title">
-                  <Link className="tag" to="/CreateProject" color = "primary">Create Project</Link>
-                </h3>
+                  <h3 className="card-title">
+                    <Link className="tag" to="/CreateProject" color="primary">Create Project</Link>
+                  </h3>
                 </div>
               </div>
             </div>

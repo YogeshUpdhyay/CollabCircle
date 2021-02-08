@@ -1,12 +1,16 @@
 import {combineReducers} from 'redux';
 import registerReducer from "./register";
 import signInReducer from "./signIn";
-import updateUserReducer from "./updateUser"
+import userReducer from './user';
+import updateUserReducer from './updateUser'
+import deleteReducer from './deleteUser';
 
 const allReducers = combineReducers({
   Register: registerReducer,
+  GetUser: userReducer,
   SignIn: signInReducer,
-  UpdateUser: updateUserReducer
+  UpdateUser: updateUserReducer,
+  DeleteUser: deleteReducer
 })
 
 export default allReducers;

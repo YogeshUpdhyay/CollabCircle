@@ -14,7 +14,7 @@
 }
 
 .tag_link:hover{
-  color: rebeccapurple;
+  color: #782387;
 }
 
 .dcard.big{
@@ -24,7 +24,7 @@
 
 .btn{
   background-color: #FEF6FF;
-  color: #8236E4;
+  color: #782387;
   transition: 0.7s;
   border-color: #8236E4;
 }
@@ -34,13 +34,13 @@
 }
 
 .link:hover{
-  color: #8236E4;
+  color: #782387;
 }
 
 
 .dcard{
   height: 30vh;
-  background-color: #8236E4;
+  background-color: #782387;
   color: #FEF6FF;
   transition: 0.5s;
   width: auto ;
@@ -49,12 +49,12 @@
 
 .dcard:hover{
   background-color: #FEF6FF;
-  color: #8236E4;
+  color: #782387;
   box-shadow: 5px 5px 5px;
 }
 
 .dcard:hover .btn{
-  background-color: #8236E4;
+  background-color: #782387;
   color: #FEF6FF;
 }
 
