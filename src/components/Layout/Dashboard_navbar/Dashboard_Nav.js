@@ -12,8 +12,7 @@ import {
   MenuItem,
   useScrollTrigger,
   Tabs,
-  Tab,
-  Icon
+  Tab
 
 } from '@material-ui/core'
 
@@ -24,7 +23,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Logo from '../../../assets/collabcirclelogo.png';
 import Theme from '../../Theme/theme';
-import Achieve from '../../../assets/icons/achieve.png'
+
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -60,11 +59,14 @@ const useStyles = makeStyles((theme) => ({
       fontFamily: 'Lato',
       fontWeight: 'bold',
     },
+  },
 
-  },
   tabsContainer: {
-    marginLeft: "auto",
+    marginRight: "auto",
+    textAlign: 'end',
+    width :'100%'
   },
+
   tabsContent: {
     textTransform: "none",
     fontWeight: 600,
@@ -157,7 +159,7 @@ export default function PrimarySearchAppBar() {
       <MenuItem onClick={handleMenuClose} component={Link} to="/UpdateSettings" style={{ textDecoration: 'none' }}>Settings</MenuItem>
       <MenuItem onClick={handleMenuClose} style={{ textDecoration: 'none' }} component = {Link} to = "/MyProjects">Taskboard</MenuItem>
       <MenuItem onClick={handleMenuClose} style={{ textDecoration: 'none' }} >My account</MenuItem>
-      <MenuItem onClick={handleMenuClose} style={{ textDecoration: 'none' }}>Log Out</MenuItem>
+      <MenuItem onClick={handleMenuClose} style={{ textDecoration: 'none' }} component = {Link} to = "/Login">Log Out</MenuItem>
     </Menu>
   );
 
@@ -219,8 +221,8 @@ export default function PrimarySearchAppBar() {
               indicatorColor="secondary"
               textColor="secondary"
               onChange={handleChange}
-              centered
-              variant="scrollable"
+
+
             >
               <Tab className={classes.tabsContent} label="DASHBOARD" component={Link} to="/Dashboard" style={{ textDecoration: 'none' }} />
               <Tab className={classes.tabsContent} label="CREATE PROJECT" component={Link} to="/CreateProject" style={{ textDecoration: 'none' }} />

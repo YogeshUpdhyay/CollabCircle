@@ -19,12 +19,12 @@ import {
 } from '@material-ui/core'
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import HowToRegIcon from '@material-ui/icons/HowToReg';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Logo from '../../../assets/collabcirclelogo.png';
 import Theme from '../../Theme/theme';
-
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 function ElevationScroll(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -63,13 +63,15 @@ const useStyles = makeStyles((theme) => ({
   },
   tabsContainer: {
     marginLeft: "auto",
+    textAlign:'end',
+
   },
   tabsContent: {
     textTransform: "none",
     fontWeight: 600,
     fontSize: "0.9rem",
     minWidth: 100,
-    marginLeft: "25px",
+    marginLeft: "20px",
 
     [theme.breakpoints.only('sm')]: {
       fontSize: "0.8rem",
@@ -174,29 +176,17 @@ export default function NavBar() {
     >
       <MenuItem>
         <IconButton  color="inherit" style = {{marginTop:'-10px'}}>
-            <DashboardIcon />
+            <LockOpenIcon />
         </IconButton>
-        <p ><Link to = "/Dashboard" style={{ textDecoration: 'none' ,  color: "black"}}>Dashboard</Link></p>
+        <p ><Link to = "/Login" style={{ textDecoration: 'none' ,  color: "black"}}>Login</Link></p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
+          <HowToRegIcon/>
         </IconButton>
-        <p>Notifications</p>
+        <p ><Link to = "/SignUp" style={{ textDecoration: 'none' ,  color: "black"}}>Register</Link></p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+
     </Menu>
   );
 
@@ -213,13 +203,14 @@ export default function NavBar() {
               <br></br>
             </Typography>
             <Tabs
-              className="tabsContainer"
+        
               value={value}
               indicatorColor="secondary"
               textColor="secondary"
               onChange={handleChange}
               centered
               variant="scrollable"
+              className={classes.tabsContainer}
             >
               <Tab className={classes.tabsContent} label="ABOUT US" component={Link} to="/AboutUs" style={{ textDecoration: 'none' }} />
               <Tab className={classes.tabsContent} label="LOGIN" component={Link} to="/Login" style={{ textDecoration: 'none' }} />
@@ -228,36 +219,7 @@ export default function NavBar() {
             </Tabs>
 
 
-            <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-              <IconButton aria-label="show 17 new notifications" color="secondary">
-                <Badge color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-              <IconButton
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="secondary"
-
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
-            <div className={classes.sectionMobile}>
-              <IconButton
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="secondary"
-              >
-                <MoreIcon />
-              </IconButton>
-            </div>
+        
           </Toolbar>
         </AppBar>
 

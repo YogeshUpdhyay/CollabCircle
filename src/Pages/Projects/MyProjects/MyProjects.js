@@ -25,7 +25,7 @@ function MyProjects() {
         <Grid item xs={12} sm={12} md={6} lg={7} style={{display: 'flex' , justifyContent: 'center'}}>
 
            <div style = {{color: 'white' , marginTop:'5em' , fontFamily :'Lato' , maxWidth : '600px'}}>
-           <h2>BROWSE PROJECTS</h2>
+           <h2>MY PROJECTS</h2>
            <br></br>
            <h5>Find interesting projects and get started with an execution plan</h5>
            <h5>Explore the mini projects that are available and click on a project that appeals to you.</h5>
