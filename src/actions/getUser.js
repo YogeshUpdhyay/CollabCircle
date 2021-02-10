@@ -1,6 +1,6 @@
 export function getUser(requestOptions){
   return (dispatch)=>{
-    fetch("http://35.154.56.92:8087/api/v1/user/", requestOptions)
+    fetch(`${process.env.REACT_APP_URL}/user/`, requestOptions)
       .then(response=>response.json())
       .then(data=>{
         console.log(data);
@@ -14,7 +14,7 @@ export function getUser(requestOptions){
 
 export function deleteUser(requestOptions){
   return (dispatch)=>{
-    fetch("http://35.154.56.92:8087/api/v1/user/",requestOptions)
+    fetch(`${process.env.REACT_APP_URL}/user/`,requestOptions)
       .then(response=>response.json())
       .then(data=>{
         console.log(data);

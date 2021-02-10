@@ -58,7 +58,7 @@ function Setting() {
   const newToken = async()=>{
     if(!Cookies.get('access_token')){
       console.log('inside newToken while loop');
-      let response = await fetch("http://35.154.56.92:8087/api/v1/user/refresh",{
+      let response = await fetch(`${process.env.REACT_APP_URL}/user/refresh`,{
         method: 'POST',
         headers: {
           'accept':'application/json',
@@ -130,7 +130,7 @@ function Setting() {
     if ('email' in fieldValues)
       temp.email = (/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/).test(fieldValues.email) ? "" : "Email is not valid."
     if ('username' in fieldValues)
-      temp.username = fieldValues.name ? "" : "This field is required."
+      temp.username = fieldValues.username ? "" : "This field is required."
 
     setErrors({
         ...temp

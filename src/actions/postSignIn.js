@@ -1,6 +1,6 @@
 export function postSignIn(requestOptions){
   return (dispatch)=>{
-    fetch("https://cors-anywhere.herokuapp.com/http://35.154.56.92:8087/api/v1/user/login", requestOptions)
+    fetch(`${process.env.REACT_APP_URL}/user/login`, requestOptions)
       .then(response=>response.json())
       .then(data=>{
         console.log(data)
@@ -14,7 +14,7 @@ export function postSignIn(requestOptions){
 
 export function postLogOut(requestOptions){
   return(dispatch)=>{
-    fetch("http://35.154.56.92:8087/api/v1/user/logout", requestOptions)
+    fetch(`${process.env.REACT_APP_URL}/user/logout`, requestOptions)
       .then(response=>response.json())
       .then(data=>{
         console.log(data);
@@ -28,7 +28,7 @@ export function postLogOut(requestOptions){
 
 export function postNewToken(requestOptions){
   return(dispatch)=>{
-    fetch("http://35.154.56.92:8087/api/v1/user/refresh",requestOptions)
+    fetch(`${process.env.REACT_APP_URL}`,requestOptions)
       .then(response=>response.json())
       .then(data=>{
         console.log(data);
