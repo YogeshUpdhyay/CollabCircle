@@ -1,16 +1,27 @@
 import { Card , Button } from '@material-ui/core'
-import React from 'react'
+import React , {useState} from 'react'
 import './ProjectCard.css'
 import BrowseProj_icon from '../../../assets/icons/code.png'
 
 function ProjectCard({project}) {
+
+  const [Applied , setApplied] = useState("#FFFFFF") ;
+  const [Text , setText ] = useState("Apply") ;
+  const [TextColor , setTextColor] = useState("#000000")
+
+  const ButtonStyles = {
+    marginTop:'2%' ,
+    background: `${Applied}` ,
+    color : `${TextColor}`
+  }
+  
   return (
+    
     <div>
       
         <div className="card py-3 px-2 mb-5 pcard" style={{width:'100%', backgroundColor: '#782387',color:'#FEF6FF'}}>
           <div className="card-title"><h4>{project.name}</h4></div>
-          <div >
-          </div>
+
           <div className="row">
             <div className="col-lg-1 col-sm-12">
               <img src = {BrowseProj_icon} style = {{maxWidth:'100px'}}></img>
@@ -32,9 +43,13 @@ function ProjectCard({project}) {
             <div className="col-lg-4 col-sm-12" >
               Date:{project.date}
             </div>
-            <div className="col-12" style= {{marginTop : '1rem'}}>
-            <Button variant="contained" style={{backgroundColor:'#008B84' , color :'#ffffff'}}>
-              Apply Now
+            <div className="col-12" >
+            <Button 
+              style= {ButtonStyles}             
+              onClick={() => {setApplied("#4C4452") ; setText("Applied") ; setTextColor("#ffffff")}}
+              variant = "filled"
+            > 
+            {Text}
             </Button>
             </div>
             
