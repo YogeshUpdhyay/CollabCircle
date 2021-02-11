@@ -14,8 +14,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import theme from "../../../components/Theme/theme";
 import { ThemeProvider } from "@material-ui/core/styles";
 import DashNav from '../../../components/Layout/Dashboard_navbar/Dashboard_Nav'
-//Form
 import { useForm } from 'react-hook-form';
+import { useSelector, useDispatch } from 'react-redux';
+import { postProject } from '../../../actions/postProject'
+
 //css
 
 const useStyles = makeStyles({
@@ -43,40 +45,59 @@ const useStyles = makeStyles({
     justifyContent: "flex-start"
   },
   img_createProject: {
-    height : "65vh" , 
-    marginTop : "50px" , 
-    [theme.breakpoints.only('md')]:{
-      height : "40vh" , 
-      maxWidth : '500px'
+    height: "65vh",
+    marginTop: "50px",
+    [theme.breakpoints.only('md')]: {
+      height: "40vh",
+      maxWidth: '500px'
     }
   }
-
 });
 
 
 export default function CreateProjects() {
 
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const createProject = useSelector((state) => state.CreateProject);
+  const [display, setDisplay] = useState({displays:"none",color:"red"});
   const { register, handleSubmit, errors, control, setValue } = useForm();
+
   const onSubmit = (data) => {
     console.log(data);
     alert("Thanks for submitting")
-    
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "Name": data.title,
+        "Description": data.description,
+        "Skills": data.skills_req,
+        "Vacancy": data.vacancy,
+      })
+    }
+
+    dispatch(postProject(requestOptions)) ;
+    setDisplay({...display, display:"block", color:" rgb(25, 212, 50)", message:"Loading..."})
+
   }
   console.log(errors);
   return (
     <ThemeProvider theme={theme}>
       <div>
-      <DashNav/>
+        <DashNav />
 
-        <Grid container style = {{ marginTop: '5em' }}>
+        <Grid container style={{ marginTop: '5em' }}>
           <Grid item lg={6} md={12} xs={12}  >
             <Grid container>
-              
+
 
               <Grid item lg={12} md={12} xs={12}>
-              <img  className = {classes.img_createProject} src={CreateProject} ></img>
-                <Typography variant="h4" style={{ color: "#ffffff" , fontFamily: "Lato" ,fontWeight: "bold"}}>
+                <img className={classes.img_createProject} src={CreateProject} ></img>
+                <Typography variant="h4" style={{ color: "#ffffff", fontFamily: "Lato", fontWeight: "bold" }}>
                   GOT AN IDEA FOR PROJECT??
                 </Typography>
 
@@ -92,10 +113,9 @@ export default function CreateProjects() {
             lg={6}
             md={12}
             xs={12}
-           
           >
-            <Grid container variant="outlined" spacing={2} style = {{marginTop : "2em"}}>
-              <Grid item lg={12} xs={12} sm={12} style = {{ display: "flex" , alignItems: 'center' ,justifyContent: 'center'}}> 
+            <Grid container variant="outlined" spacing={2} style={{ marginTop: "2em" }}>
+              <Grid item lg={12} xs={12} sm={12} style={{ display: "flex", alignItems: 'center', justifyContent: 'center' }}>
                 <form onSubmit={handleSubmit(onSubmit)} >
                   <Card className={classes.card} >
                     <CardContent>
@@ -165,11 +185,11 @@ export default function CreateProjects() {
                             variant="contained"
                             color="secondary"
                             className={classes.btn_submit}
-                      
+
                           >
                             Submit
                           </Button>
-                        
+
                         </Grid>
                       </Grid>
                     </CardContent>
