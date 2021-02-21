@@ -16,7 +16,7 @@ class Projects(Document):
 
     def payload(self):
         payload = {
-            "id": self.id,
+            "id": str(self.id),
             "Creator": self.Creator,
             "Name": self.Name,
             "Description": self.Description,

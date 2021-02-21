@@ -12,6 +12,7 @@ class ProjectsPostIn(BaseModel):
     Status: str
 
 class ProjectGetOut(BaseModel):
+    id: str
     Name: str
     Description: str
     Vacancy: int

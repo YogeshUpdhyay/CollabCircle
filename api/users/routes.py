@@ -37,11 +37,15 @@ async def login(Username_Email: str = Header(...), Password: str = Header(...)):
             user = Users.objects.get(Email = Username_Email)
         except DoesNotExist:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+        except Exception as e:
+            console_logger.debug(e)
     else:
         try:
             user = Users.objects.get(Username = Username_Email)
         except DoesNotExist:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+        except Exception as e:
+            console_logger.debug(e)
 
     # Verifying the password
     if not user.verify_password(Password):
@@ -52,8 +56,11 @@ async def login(Username_Email: str = Header(...), Password: str = Header(...)):
     refresh_token = auth.generate_token("refresh_token", user.id)
 
     # Adding to the sessions collection
-    session = ActiveSessions(User_id = str(user.id), Refresh_token = refresh_token)
-    session.save()
+    try:
+        session = ActiveSessions(User_id = str(user.id), Refresh_token = refresh_token, Created_at=datetime.now())
+        session.save()
+    except Exception as e:
+        console_logger.debug(e)
     
     return JSONResponse(content=LoginPostOut(access_token=access_token, refresh_token=refresh_token).dict(), status_code=status.HTTP_200_OK)
 

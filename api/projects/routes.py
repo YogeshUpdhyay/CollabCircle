@@ -216,9 +216,28 @@ async def reject_application(payload: RejectProjectIn, user: dict = Depends(auth
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-@router.get('/applications',
+@router.get('/applications/{id}',
     status_code=status.HTTP_200_OK,
-    response_model=util_models.DefaultResponseModel,
-    responses={})
-async def fetch_applicants(user: dict = Depends(auth.authenticate_user)):
-    pass
+    # response_model=util_models.DefaultResponseModel,
+    responses={
+        404: responses._404(),
+        403: responses._403(),
+    })
+async def fetch_applicants(id: str, user: dict = Depends(auth.authenticate_user)):
+    try:
+        project = Projects.objects.get(id = id)
+    except DoesNotExist:
+        raise HTTPException(status_code=404)
+    except Exception as e:
+        console_logger.debug(e)
+        raise HTTPException(status_code=500)
+    
+    if not str(project.Creator.id) == user['sub']:
+        raise HTTPException(status_code=403)
+    
+    response = list()
+    for user in project.Applications:
+        response.append(user.payload())
+    return response
+        
+    
