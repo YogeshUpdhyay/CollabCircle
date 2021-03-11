@@ -21,6 +21,7 @@ class Users(Document):
 
     def payload(self):
         payload = {
+            "id": str(self.id),
             "Username" : self.Username,
             "Fullname": self.Fullname,
             "Email": self.Email

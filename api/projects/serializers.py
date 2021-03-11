@@ -41,8 +41,11 @@ class RejectProjectIn(BaseModel):
     User_id: str
 
 class UsersOut(BaseModel):
-    pass
+    id: str
+    Username: str
+    Fullname: str
+    Email: EmailStr
 
 class ApplicantsGetOut(BaseModel):
     Project_id: str
-    Applcants: List[UsersOut]
+    Applicants: List[UsersOut]

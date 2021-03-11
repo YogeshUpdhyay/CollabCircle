@@ -26,6 +26,7 @@ class RefreshPostOut(BaseModel):
     access_token: str
 
 class UserGetOut(BaseModel):
+    id: str
     Username: str
     Fullname: str
     Email: EmailStr
