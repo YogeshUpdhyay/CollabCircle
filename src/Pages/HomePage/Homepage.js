@@ -65,7 +65,7 @@ export default function Homepage() {
                   </div>
                   <span class="flag">Connect</span>
                 </div>
-                <div class="desc_left" >My first employer. All the stuff I've learned and projects I've been working on.</div>
+                <div class="desc_left" >Build your network . Learn with your peers and brainstorm on new ideas</div>
               </div>
             </li>
 
@@ -77,7 +77,7 @@ export default function Homepage() {
                   </div>
                   <span class="flag">Inspire</span>
                 </div>
-                <div class="desc">My first employer. All the stuff I've learned and projects I've been working on.</div>
+                <div class="desc">Code together and build amazing projects and inspire other with your work</div>
 
                
               </div>
