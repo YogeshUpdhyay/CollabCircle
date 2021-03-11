@@ -6,15 +6,15 @@ import {
   CardContent
 } from "@material-ui/core";
 import DashNav from '../../../components/Layout/Dashboard_navbar/Dashboard_Nav'
-import ProjectCard from '../../BrowseProject/components/ProjectCard'
+import ProjectCard from './components/ProjectCard.js'
 import Banner from '../../../assets/myprojs.png'
 import "../../BrowseProject/BrowseProject.css"
 
 
 function MyProjects() {
 
-  const projects = [{ name: 'Employee Management', description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique enim voluptatem rem tempora culpa ipsa iusto placeat quaerat, minima praesentium necessitatibus aliquid facilis dolorem, nulla quis ullam eius dolore dolores.', vacancies: '3', date: 'yay', skills: 'Angular.js , Node.js' }, { name: 'Cricket Score Updates', description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique enim voluptatem rem tempora culpa ipsa iusto placeat quaerat, minima praesentium necessitatibus aliquid facilis dolorem, nulla quis ullam eius dolore dolores.', vacancies: '2', date: 'yayyy', skills: 'Python' }, { name: 'E-Commerce Website', description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique enim voluptatem rem tempora culpa ipsa iusto placeat quaerat, minima praesentium necessitatibus aliquid facilis dolorem, nulla quis ullam eius dolore dolores.', vacancies: '4', date: 'yayyy', skills: 'React.js , Django' }]
-
+  const projects = [{ name: 'Employee Management', description: 'A web-application for managing the employee data . The admin can create , read , update and delete the employee data. The employee can only view his details and edit them . Decent UI and functionality to be added', vacancies: '3', date: '20/01/2021', skills: 'Angular.js , Node.js' },
+   { name : 'Cricket score updates',description: 'Live Cricket match updates . Fetching data from an api and displaying them with awesome UI', vacancies: '2', date: '12/12/2020', skills: 'Django,HTML,CSS,JS' }, ]
   return (
     <div className="pb-4" style={{ marginTop: '5em' }}>
       <DashNav />
@@ -27,10 +27,8 @@ function MyProjects() {
            <div style = {{color: 'white' , marginTop:'5em' , fontFamily :'Lato' , maxWidth : '600px'}}>
            <h2>MY PROJECTS</h2>
            <br></br>
-           <h5>Find interesting projects and get started with an execution plan</h5>
-           <h5>Explore the mini projects that are available and click on a project that appeals to you.</h5>
-           <h5>Before starting a project, be sure to select a project that
-           will add value to your career goals and matches your programming interests.</h5>
+           <h2>View your ongoing projects here</h2>
+           <h5>Hola! You have collaborated with 2 teams</h5>
            </div>
 
         </Grid>

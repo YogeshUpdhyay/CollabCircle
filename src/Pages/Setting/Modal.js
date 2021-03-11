@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import {
+Button
+} from '@material-ui/core';
 
 const MODAL_STYLES = {
   position: 'fixed',
@@ -29,8 +32,8 @@ export default function Modal({open, onClose, handleDelete}) {
       <div style={OVERLAY_STYLES} />
       <div style={MODAL_STYLES}>
         Are you sure you want to delete your account?
-        <button onClick={(e)=>{handleDelete(e)}}>YES</button>
-        <button onClick={onClose}>NO</button>
+        <Button onClick={(e)=>{handleDelete(e)} } variant = "filled" style = {{backgroundColor:'#782387' , color:'#ffffff'}}>Yes</Button>
+        <Button onClick={onClose} variant = "filled" style = {{backgroundColor:'#782387' , color:'#ffffff'}}>No</Button>
       </div>
     </>,
     document.getElementById('portal')

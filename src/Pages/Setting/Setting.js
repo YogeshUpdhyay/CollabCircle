@@ -364,7 +364,7 @@ function Setting() {
 											</Grid>
 
 											<Grid items xs={12} sm={6}>
-												<Button variant="contained" color="secondary" style={{ marginLeft: "20px" }} onClick={()=>setIsOpen(true)}>Yes</Button>
+												<Button variant="contained"  style={{ marginLeft: "20px" , backgroundColor : '#782387', color:'#ffffff'}} onClick={()=>setIsOpen(true)}>Yes</Button>
                         
 											</Grid>
                       <Modal open={isOpen} onClose={()=>setIsOpen(false)} handleDelete={handleDelete}/>
