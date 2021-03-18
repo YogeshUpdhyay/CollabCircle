@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import mongoengine
+import os
 from api.utils import responses
+from api.utils.logs import console_logger
 
 def dbinit():
     mongoengine.connect(db="CollabDB", host='localhost', username='root', password='example', authentication_source='admin')

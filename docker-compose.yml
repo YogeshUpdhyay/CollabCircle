@@ -1,14 +1,19 @@
 version: "3"
 
 services: 
-  # web:
-  #   build: .
-  #   image: backend:v1
-  #   command: python run.py 
-  #   ports: 
-  #     - 8087:8000
-  #   volumes:
-  #     - .:/code
+  web:
+    build: .
+    image: backend:v1
+    command: python run.py 
+    ports: 
+      - 8087:8000
+    volumes:
+      - .:/code
+    environment: 
+      - DB_USERNAME=/run/secrets/my_username
+    secrets:
+      - my_username
+      - my_external_secret
 
   mongo:
     image: mongo:4.4.3
@@ -35,3 +40,9 @@ services:
 networks:
   default:
     name: collab_circle
+
+secrets:
+  my_username:
+    file: ./my_username.txt
+  my_external_secret:
+    external: true
