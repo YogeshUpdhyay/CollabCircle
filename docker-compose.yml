@@ -1,19 +1,36 @@
-version: "3"
+version: "3.7"
 
-services: 
+services:
+  nginx:
+    image: nginx:1.15-alpine
+    restart: unless-stopped
+    volumes:
+      - ./webserver/nginx:/etc/nginx/conf.d
+      - ./webserver/certbot/conf:/etc/letsencrypt
+      - ./webserver/certbot/www:/var/www/certbot
+      - ./build:/usr/share/nginx/html:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./webserver/certbot/conf:/etc/letsencrypt
+      - ./webserver/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
   web:
     build: .
     image: backend:v1
     command: python run.py 
+    restart: unless-stopped
     ports: 
       - 8087:8000
     volumes:
       - .:/code
-    environment: 
-      - DB_USERNAME=/run/secrets/my_username
-    secrets:
-      - my_username
-      - my_external_secret
 
   mongo:
     image: mongo:4.4.3
@@ -41,8 +58,3 @@ networks:
   default:
     name: collab_circle
 
-secrets:
-  my_username:
-    file: ./my_username.txt
-  my_external_secret:
-    external: true
