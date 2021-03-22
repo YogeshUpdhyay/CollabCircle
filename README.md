@@ -12,7 +12,8 @@ flutter pub get
 ```
 flutter run
 ```
-
 ##### Screens 
-Login Screen
-![Login Screen]()
+
+Login Screen               |  Landing Page
+:-------------------------:|:-------------------------:
+<img src="https://github.com/YogeshUpdhyay/CollabCircle/blob/mobileapp/screenshots/Screenshot_1616440963.png?raw=true" alt="drawing" width="300"/>  |  <img src="https://github.com/YogeshUpdhyay/CollabCircle/blob/mobileapp/screenshots/Screenshot_1616441023.png?raw=true" alt="drawing" width="300"/>
