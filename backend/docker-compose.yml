@@ -1,0 +1,60 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: nginx:1.15-alpine
+    restart: unless-stopped
+    volumes:
+      - ./webserver/nginx:/etc/nginx/conf.d
+      - ./webserver/certbot/conf:/etc/letsencrypt
+      - ./webserver/certbot/www:/var/www/certbot
+      - ./build:/usr/share/nginx/html:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./webserver/certbot/conf:/etc/letsencrypt
+      - ./webserver/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+  web:
+    build: .
+    image: backend:v1
+    command: python run.py 
+    restart: unless-stopped
+    ports: 
+      - 8087:8000
+    volumes:
+      - .:/code
+
+  mongo:
+    image: mongo:4.4.3
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    restart: unless-stopped
+    volumes:
+      - ./data:/data/db
+    ports: 
+      - 27017:27017
+  
+  mongo-express:
+    image: mongo-express:0.54.0
+    ports:
+      - 8088:8081
+    restart: unless-stopped
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+    depends_on:
+      - mongo
+    
+networks:
+  default:
+    name: collab_circle
+

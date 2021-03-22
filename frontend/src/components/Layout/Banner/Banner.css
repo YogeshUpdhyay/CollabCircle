@@ -1,0 +1,116 @@
+
+
+.banner_first {
+  width: 1350px;
+  height: 650px;
+  background-image: url("../../../assets/1.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.banner_second {
+  width: 1350px;
+  height: 650px;
+  background-image: url("../../../assets/2.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.banner_third {
+  width: 1350px;
+  height: 650px;
+  background-image: url("../../../assets/3.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.banner_fourth {
+  width: 1350px;
+  height: 650px;
+  background-image: url("../../../assets/4.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.banner__AboutUs{
+  height : 100vh ;
+  position: relative ;
+  /* background-image: url("../../assets/Aboutus.jpg"); */
+  background-image: url("../../../assets/Aboutus.jpg");
+  box-sizing: content-box;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.banner__info{
+
+  
+  color: rgb(99, 85, 85) ;
+  /* background-color: white; */
+  padding-top: 20vh;
+  padding-left: 20px ;
+  padding-right: 50px ;
+  padding-bottom: 45px;
+  width : 700px ;
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  
+   
+}
+
+.banner__info__AboutUs{
+  color:#12327F;
+  /* background-color: white; */
+  padding-top: 20vh;
+  padding-left: 20px ;
+  padding-right: 50px ;
+  padding-bottom: 45px;
+  width : 700px ;
+  text-align: left;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.banner__text{
+   
+  font-size: 50px;
+  align-items: center;
+}
+
+
+@media only screen and (max-width: 767px) {
+ 
+  .banner_first {
+    background-image: url("../../../assets/1.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 400px;
+    height: 200px;
+  }
+  .banner_second {
+    background-image: url("../../../assets/2.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 400px;
+    height: 200px;
+  }
+  .banner_third {
+    background-image: url("../../../assets/3.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 400px;
+    height: 200px;
+  }
+  .banner_fourth {
+    background-image: url("../../../assets/4.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 400px;
+    height: 200px;
+  }
+}

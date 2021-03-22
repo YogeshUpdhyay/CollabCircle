@@ -1,0 +1,7 @@
+data
+config.py
+.vscode
+__pycache__
+fastapi
+.pytest_cache
+__pycache__

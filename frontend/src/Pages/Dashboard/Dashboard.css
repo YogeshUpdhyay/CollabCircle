@@ -1,0 +1,80 @@
+*{
+  box-sizing: border-box;
+}
+
+.MyProjects{
+  transform: translatey(-10%);
+}
+
+.tag_link {
+  margin-top:10px;
+  text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+  color: #ffffff;
+  text-decoration: none
+}
+
+.tag_link:hover{
+  color: #782387;
+}
+
+.dcard.big{
+  height: 40vh;
+  text-align: center;
+}
+
+.btn{
+  background-color: #FEF6FF;
+  color: #782387;
+  transition: 0.7s;
+  border-color: #8236E4;
+}
+
+.link{
+  color: #FEF6FF;
+}
+
+.link:hover{
+  color: #782387;
+}
+
+
+.dcard{
+  height: 30vh;
+  background-color: #782387;
+  color: #FEF6FF;
+  transition: 0.5s;
+  width: auto ;
+}
+
+
+.dcard:hover{
+  background-color: #FEF6FF;
+  color: #782387;
+  box-shadow: 5px 5px 5px;
+}
+
+.dcard:hover .btn{
+  background-color: #782387;
+  color: #FEF6FF;
+}
+
+.dcard.small{
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.dcard.small .card-body{
+  transform: translateY(30%);
+}
+
+
+
+@media (max-width: 992px){
+  .MyProjects{
+    transform: translateY(15%);
+  }
+}
