@@ -36,7 +36,7 @@
 - Docker
 ## Mobile App
 - Flutter
-# For setup
+# 🔸For setup
 -Check out individual branches
 
 # Collaborators 👦👧
