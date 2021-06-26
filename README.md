@@ -15,8 +15,11 @@
  <div align = "center" >
  
  <br>
- <a href="https://ibb.co/5Wd9BL0"><img src="https://i.ibb.co/svhPyqf/banner.png" alt="banner" border="0" width = "500"></a>
- <a href="https://ibb.co/9NG7MPv"><img src="https://i.ibb.co/FKnFPpW/mobile.png" alt="mobile" border="0" width = "500"></a>
+ 
+ # 🔸Demo Video 
+ 
+https://user-images.githubusercontent.com/59830064/123517030-a972c980-d6bc-11eb-85bd-2400c9f7408d.mp4
+
  </div>
  
 # 🔸Features
@@ -36,7 +39,7 @@
 - Docker
 ## Mobile App
 - Flutter
-# For setup
+# 🔸For setup
 -Check out individual branches
 
 # Collaborators 👦👧
